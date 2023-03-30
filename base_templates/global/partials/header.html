@@ -1,0 +1,27 @@
+{% load i18n %}
+{% load static %}
+<header class="main-header-container">
+    <div class="main-header container">
+        <div class="logo-container">
+            <a class="main-logo" href="{% url 'base:home' %}">
+                <img src="{% get_static_prefix %}global/img/od.png" alt="Logo" width="50%">
+            </a>
+        </div>
+        <div class="header-buttons">
+            <h1>
+                <button class="plaintext-button treatments">
+                    <a href="{% url 'base:treatments' %}">{% translate "Treatments" %}</a>
+                </button>
+                <button class="plaintext-button schedule">
+                    {% translate "Schedule" %}
+                </button>
+                <button class="plaintext-button about">
+                    <a href="{% url 'base:about' %}">{% translate "About" %}</a>
+                </button>
+                <button class="plaintext-button login">
+                    {% translate "Login" %}
+                </button>
+            </h1>
+        </div>
+    </div>
+</header>
