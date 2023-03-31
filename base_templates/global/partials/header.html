@@ -18,9 +18,25 @@
                 <button class="plaintext-button about">
                     <a href="{% url 'base:about' %}">{% translate "About" %}</a>
                 </button>
-                <button class="plaintext-button login">
-                    {% translate "Login" %}
-                </button>
+                {% if user.is_authenticated %}
+                    <button class="plaintext-button dashboard">
+                        <a href="{% url 'users:dashboard' %}">{% translate "Dashboard" %}</a>
+                    </button>
+                    <form action="{% url 'users:logout' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="username" value="{{ request.user.username }}">
+                        <button class="plaintext-button logout" type="submit">
+                            {% translate 'Logout' %}
+                        </button>
+                    </form>
+                {% else %}
+                    <button class="plaintext-button login">
+                        <a href="{% url 'users:login' %}">{% translate "Login" %}</a>
+                    </button>
+                    <button class="plaintext-button register">
+                        <a href="{% url 'users:register' %}">{% translate "Register" %}</a>
+                    </button>
+                {% endif %}
             </h1>
         </div>
     </div>

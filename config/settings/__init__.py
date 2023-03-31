@@ -1,3 +1,4 @@
+# flake8: noqa
 from .environment import *  # isort: skip
 from .installed_apps import *  # isort: skip
 from .middlewares import *  # isort: skip

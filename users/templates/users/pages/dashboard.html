@@ -1,0 +1,13 @@
+{% extends 'global/base.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Dashboard' %}{% endblock title %}
+
+{% block content %}
+    <div class="main-content center container article">
+        {% include 'global/partials/messages.html' %}
+        <h2>{% translate 'Dashboard' %}</h2>
+        <div class="user-dashboard-container">
+            <h3>{% translate 'Your Dashboard' %}</h3>
+        </div>
+    </div>
+{% endblock content %}

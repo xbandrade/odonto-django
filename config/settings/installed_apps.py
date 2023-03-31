@@ -9,4 +9,5 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base',
     'schedule',
+    'users',
 ]

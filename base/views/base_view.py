@@ -7,7 +7,6 @@ class BaseView(View):
 
     def get(self, request):
         curr_path = request.path
-        print('path', curr_path)
         context = {
             'curr_path': curr_path,
         }

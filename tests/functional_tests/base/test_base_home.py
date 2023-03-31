@@ -1,14 +1,8 @@
-import os
-from unittest.mock import patch
-
 import pytest
-from django.test import override_settings
 from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 
-from ..base import BaseFunctionalTest
+from tests.functional_tests.base import BaseFunctionalTest
 
 
 @pytest.mark.functional_test
@@ -41,4 +35,11 @@ class HomePageFunctionalTest(BaseFunctionalTest):
         button = self.browser.find_element(By.CLASS_NAME, 'login')
         button.click()
         self.assertEqual(self.browser.current_url,
-                         self.live_server_url + reverse('base:login'))
+                         self.live_server_url + reverse('users:login'))
+
+    def test_home_register_button_leads_to_correct_page(self):
+        self.browser.get(self.live_server_url)
+        button = self.browser.find_element(By.CLASS_NAME, 'register')
+        button.click()
+        self.assertEqual(self.browser.current_url,
+                         self.live_server_url + reverse('users:register'))
