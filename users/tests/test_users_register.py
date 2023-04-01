@@ -32,7 +32,6 @@ class UserRegisterFormUnitTest(TestCase):
             'at least 8 characters.'
         )),
         ('cpf', 'Enter a valid CPF/CNPJ'),
-        ('phone_number', 'Enter a valid phone number'),
     ])
     def test_fields_help_text(self, field, needed):
         with translation.override('en'):

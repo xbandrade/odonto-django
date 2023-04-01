@@ -8,11 +8,11 @@
             </a>
         </div>
         <div class="header-buttons">
-            <button class="plaintext-button treatments">
-                <a href="{% url 'base:treatments' %}">{% translate "Treatments" %}</a>
+            <button class="plaintext-button services">
+                <a href="{% url 'base:services' %}">{% translate "Services" %}</a>
             </button>
             <button class="plaintext-button schedule">
-                {% translate "Schedule" %}
+                <a href="{% url 'schedule:schedule' %}">{% translate "Schedule" %}</a>
             </button>
             <button class="plaintext-button about">
                 <a href="{% url 'base:about' %}">{% translate "About" %}</a>

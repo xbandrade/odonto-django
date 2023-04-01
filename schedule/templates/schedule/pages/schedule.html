@@ -1,13 +1,14 @@
 {% extends 'global/base.html' %}
 {% load i18n %}
-{% block title %}{% translate 'Dashboard' %}{% endblock title %}
+{% block title %}{% translate 'Schedule' %}{% endblock title %}
 
 {% block content %}
     <div class="main-content dashboard center container article">
         {% include 'global/partials/messages.html' %}
         <div class="dashboard-tag center">
-            <h2>{% translate 'Dashboard' %}</h2>
-            <h3>{% translate 'Your Dashboard' %}</h3>
+            <h2>{% translate 'Schedule an appointment' %}</h2>
+            <h3>{% translate 'Check the available dates and times using the calendar below.' %}</h3>
+            <h3>{% translate '...' %}</h3>
         </div>
     </div>
 {% endblock content %}

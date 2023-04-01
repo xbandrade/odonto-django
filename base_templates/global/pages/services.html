@@ -2,12 +2,12 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% translate 'Treatments' %}{% endblock title %} 
+{% block title %}{% translate 'Services' %}{% endblock title %} 
 {% block content %}
     {% include 'global/partials/messages.html' %}
     <div class="main-content main-content-list container">
         <div class="text-wrapper">
-            <h2>These are our treatments</h2>
+            <h2>{% translate 'These are our services, treatments and procedures' %}</h2>
         </div>
     </div>
     {% include 'global/partials/footer.html' %}

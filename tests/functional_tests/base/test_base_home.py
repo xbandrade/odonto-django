@@ -7,20 +7,19 @@ from tests.functional_tests.base import BaseFunctionalTest
 
 @pytest.mark.functional_test
 class HomePageFunctionalTest(BaseFunctionalTest):
-    def test_home_treatments_button_leads_to_correct_page(self):
+    def test_home_services_button_leads_to_correct_page(self):
         self.browser.get(self.live_server_url)
-        button = self.browser.find_element(By.CLASS_NAME, 'treatments')
+        button = self.browser.find_element(By.CLASS_NAME, 'services')
         button.click()
         self.assertEqual(self.browser.current_url,
-                         self.live_server_url + reverse('base:treatments'))
+                         self.live_server_url + reverse('base:services'))
 
-    @pytest.mark.skip('schedule page')
     def test_home_schedule_button_leads_to_correct_page(self):
         self.browser.get(self.live_server_url)
         button = self.browser.find_element(By.CLASS_NAME, 'schedule')
         button.click()
         self.assertEqual(self.browser.current_url,
-                         self.live_server_url + reverse('base:schedule'))
+                         self.live_server_url + reverse('schedule:schedule'))
 
     def test_home_about_button_leads_to_correct_page(self):
         self.browser.get(self.live_server_url)
@@ -29,7 +28,6 @@ class HomePageFunctionalTest(BaseFunctionalTest):
         self.assertEqual(self.browser.current_url,
                          self.live_server_url + reverse('base:about'))
 
-    @pytest.mark.skip('login page')
     def test_home_login_button_leads_to_correct_page(self):
         self.browser.get(self.live_server_url)
         button = self.browser.find_element(By.CLASS_NAME, 'login')
