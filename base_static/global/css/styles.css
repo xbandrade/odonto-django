@@ -60,6 +60,9 @@
         text-decoration: none;
     }
     
+    form {
+        display: inline-block;
+    }
 
     body {
         min-height: 100%;
@@ -178,7 +181,9 @@
     .logo-container {
         display: flex;
         justify-content: flex-start;
+        align-items: center;
     }
+    
     
     .plaintext-button {
         display: inline;
@@ -448,4 +453,9 @@
         border: 1px solid var(--color-debug-dark);
         background: var(--color-debug-light);
         color: var(--color-debug-dark);
+    }
+
+    .header-buttons {
+        display: flex;
+        align-items: center;
     }

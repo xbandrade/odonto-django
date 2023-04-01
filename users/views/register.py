@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext as _
@@ -40,3 +40,15 @@ class UserCreateView(View):
             del request.session['register_form_data']
             return redirect(reverse('users:login'))
         return redirect('users:register')
+
+
+class ClearSessionView(View):
+    http_method_names = ['post']
+
+    def get(self, request):
+        raise Http404()
+
+    def post(self, request):
+        if 'register_form_data' in request.session:
+            del request.session['register_form_data']
+        return JsonResponse({'success': True})

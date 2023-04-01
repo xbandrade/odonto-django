@@ -16,6 +16,10 @@
         </main>
         {% include 'global/partials/footer.html' %}
         <script src="{% get_static_prefix %}global/js/scripts.js"></script>
+        <script>
+            var clearSessionUrl = "{% url 'users:clear' %}";
+            var csrfToken = "{{ csrf_token }}";
+        </script>
     </div>
 </body>
 
