@@ -7,8 +7,13 @@
         {% include 'global/partials/messages.html' %}
         <div class="dashboard-tag center">
             <h2>{% translate 'Schedule an appointment' %}</h2>
-            <h3>{% translate 'Check the available dates and times using the calendar below.' %}</h3>
-            <h3>{% translate '...' %}</h3>
+            <h3>{% translate '  ' %}</h3>
+        {% include 'global/partials/messages.html' %}
+        {% if user.is_authenticated %}
+            {% include 'global/partials/form.html' %}
+        {% else %}
+            <h3>❗{% translate 'You have to be logged in to book an appointment.' %}</h3>
+        {% endif %}
         </div>
     </div>
 {% endblock content %}

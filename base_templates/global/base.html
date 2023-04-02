@@ -15,6 +15,7 @@
             {% block content %}{% endblock %}
         </main>
         {% include 'global/partials/footer.html' %}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{% get_static_prefix %}global/js/scripts.js"></script>
         <script>
             var clearSessionUrl = "{% url 'users:clear' %}";

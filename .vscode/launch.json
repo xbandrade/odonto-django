@@ -13,7 +13,22 @@
                 "runserver"
             ],
             "django": true,
-            "justMyCode": true
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "redirectOutput": true
+        },
+        {
+            "name": "Python: Test debug config",
+            "type": "python",
+            "request": "test",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "redirectOutput": true
         }
     ]
 }
