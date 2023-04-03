@@ -49,13 +49,9 @@ class AvailableAppointmentTimes(View):
         booked_appointments = [apt.strftime('%H:%M')
                                for apt in booked_appointments]
         all_times = [f'{i:02d}:00' for i in range(8, 18)]
-        # print(type(booked_appointments[0]), type(all_times[0]))
-        print(*all_times)
-        print(*booked_appointments)
         available_times = [
             time for time in all_times if time not in booked_appointments
         ]
-        print(*available_times)
         return JsonResponse({'available_times': available_times})
 
     def get_url(self):
@@ -67,7 +63,6 @@ class AvailableAppointmentDates(View):
         selected_time = request.GET.get('time')
         booked_appointments = Appointment.objects.filter(
             time=selected_time).values_list('date', flat=True)
-        print(*booked_appointments, sep='\n')
         today = dt.date.today()
         all_dates = [
             (today + dt.timedelta(days=i)).isoformat() for i in range(1, 61)
@@ -76,7 +71,6 @@ class AvailableAppointmentDates(View):
         available_dates = [
             date for date in all_dates if date not in booked_appointments
         ]
-        print(*available_dates)
         return JsonResponse({'available_dates': available_dates})
 
     def get_url(self):
@@ -87,5 +81,4 @@ class ProcedurePrice(View):
     def get(self, request, id):
         procedure = Procedure.objects.get(id=id)
         price = procedure.price
-        print('price', price)
         return JsonResponse({'price': price})

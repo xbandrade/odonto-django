@@ -19,8 +19,14 @@ class AppointmentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._my_errors = defaultdict(lambda: [])
-        self.fields['procedure'].queryset = Procedure.objects.all()
+        self.fields['procedure'].widget.choices = [
+            (p.pk, p.name) for p in Procedure.objects.all()
+        ]
+        first_procedure = Procedure.objects.first()
+        self.fields['procedure'].initial = first_procedure.pk
         self.fields['procedure'].label = _('Select a procedure')
+        price_str = '{:,.2f}'.format(first_procedure.price).replace('.', ',')
+        self.fields['price'].initial = _(f'R$ {price_str}')
         today = dt.date.today()
         date_choices = [
             (today + dt.timedelta(days=i)).isoformat() for i in range(1, 61)

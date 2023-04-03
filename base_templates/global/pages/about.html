@@ -6,8 +6,15 @@
 {% block content %}
     {% include 'global/partials/messages.html' %}
     <div class="main-content main-content-list container">
-        <div class="text-wrapper">
-            <h2>About OdontoDj...</h2>
+        <div class="about-text">
+            <ul>
+                <h1>{% translate "Welcome to OdontoDj!" %}</h1>
+                {% for text in about_text %}
+                    <li>
+                        <h3>{{ text }}</h3>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock content %}

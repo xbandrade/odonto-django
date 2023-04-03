@@ -497,3 +497,21 @@
     .inline-form {
         display: inline;
     }
+
+    .about-text ul {
+        list-style: none;
+        text-align: center;
+    }
+      
+    .about-text li {
+        display: inline-block;
+    }
+
+    .about-text h1 {
+        margin: 2rem 2rem;
+    }
+    
+    .about-text h3 {
+        margin: 2rem 25rem;
+    }
+      
