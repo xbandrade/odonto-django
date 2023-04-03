@@ -205,13 +205,15 @@
         color: var(--color-white);
     }
 
-    .tutorial-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
+    .delete-button {
+        display: inline;
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: var(--color-primary);
+        font-size: 1.6rem;
     }
+    
 
     .text-wrapper {
         display: flex;
@@ -343,17 +345,6 @@
         align-items: flex-start;
     }
 
-    .text-wrapper button,
-    .text-wrapper a
-    {
-        padding: 1rem 2rem;
-        margin-top: .5rem;
-        border: none;
-        background: var(--color-primary-dark);
-        color: var(--color-white);
-        cursor: pointer;
-    }
-
 
     /* FORMS */
     .form-content {
@@ -392,8 +383,7 @@
         gap: var(--spacing-gutter-medium);
     }
 
-    .form-content button,
-    .dashboard button
+    .form-content button
     {
         padding: 1rem 2rem;
         border: none;
@@ -467,39 +457,43 @@
         margin: 0 auto;
       }
     
-      .user-dashboard-container h3,
-      .user-dashboard-container p,
-      .user-dashboard-container ul {
-        margin: 1rem 1rem;
-        text-align: left;
-      }
-    
-      .dashboard-tag {
-        text-align: center;
-        margin-top: 2rem;
-      }
+    .user-dashboard-container h3,
+    .user-dashboard-container p,
+    .user-dashboard-container ul {
+    margin: 1rem 1rem;
+    text-align: left;
+    }
 
-      .dashboard-tag h3 {
-        text-align: center;
-      }
+    .dashboard-tag {
+    text-align: center;
+    margin-top: 2rem;
+    }
 
-      .dashboard {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-      }
+    .dashboard-tag h3 {
+    text-align: center;
+    }
 
-      .appointment-list {
-        text-align: left;
-        margin: 2rem;
-      }
+    .dashboard {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    }
 
-      .appointment-list li {
-        margin-bottom: 1rem;
-      }
+    .appointment-list {
+    text-align: left;
+    margin: 2rem;
+    }
+
+    .appointment-list li {
+    margin-bottom: 1rem;
+    }
       
-      .appointment-list h4 {
-        text-align: center;
-        justify-content: center;
-        margin-bottom: 2rem;
-      }
+    .appointment-list h4 {
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    }
+
+    .inline-form {
+        display: inline;
+    }

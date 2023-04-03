@@ -12,7 +12,14 @@
                     <h4>{% translate 'Your Appointments' %}</h4>
                     <ul>
                         {% for appointment in appointments %}
-                            <li>{{ appointment }} - {{ appointment.procedure }} - {{ appointment.date }} {{ appointment.time }}</li>
+                            <li>
+                                {{ appointment }} - {{ appointment.procedure }} - {{ appointment.date }} {{ appointment.time }} - 
+                                <form class="inline-form form-delete" action="{% url 'users:appointment_delete' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="id" value="{{ appointment.id }}">
+                                    <button class="delete-button" type="submit">❌</button>
+                                </form>
+                            </li>
                         {% endfor %}
                     </ul>
                 {% else %}

@@ -13,4 +13,6 @@ urlpatterns = [
     path('dashboard/', views.UserDashboardView.as_view(), name='dashboard'),
     path('logout/', views.UserLogoutView.as_view(), name='logout'),
     path('clear/', views.ClearSessionView.as_view(), name='clear'),
+    path('delete/', views.DashboardAppointmentDelete.as_view(),
+         name='appointment_delete'),
 ]
