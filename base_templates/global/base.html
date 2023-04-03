@@ -18,7 +18,9 @@
             {% include 'global/partials/footer.html' %}
         {% endif %}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="{% get_static_prefix %}global/js/scripts.js"></script>
+        <script src="{% get_static_prefix %}global/js/form_script.js"></script>
+        <script src="{% get_static_prefix %}global/js/jquery_script.js"></script>
+        <script src="{% get_static_prefix %}global/js/price_script.js"></script>
         <script>
             var clearSessionUrl = "{% url 'users:clear' %}";
             var csrfToken = "{{ csrf_token }}";

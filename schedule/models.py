@@ -17,7 +17,7 @@ class Procedure(models.Model):
         verbose_name_plural = _('Procedures')
 
     def __str__(self) -> str:
-        return f'{self.name} - R${self.price}'
+        return f'{self.name}'
 
 
 class AppointmentManager(models.Manager):
@@ -49,6 +49,11 @@ class Appointment(models.Model):
     )
     date = models.DateField(verbose_name=_('Date'))
     time = models.TimeField(verbose_name=_('Time'))
+    # price = models.DecimalField(
+    #     max_digits=8, decimal_places=2,
+    #     verbose_name=_('Price'), blank=True,
+    #     default=0.0
+    # )
 
     class Meta:
         unique_together = ('date', 'time')
@@ -61,3 +66,7 @@ class Appointment(models.Model):
             id=self.id,
             name=name,
         )
+
+    # def save(self, *args, **kwargs):
+    #     self.price = self.procedure.price
+    #     super(Appointment, self).save(*args, **kwargs)

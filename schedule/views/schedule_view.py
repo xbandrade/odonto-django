@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views import View
 
 from schedule.forms.appointment_form import AppointmentForm
-from schedule.models import Appointment
+from schedule.models import Appointment, Procedure
 
 
 class ScheduleView(View):
@@ -81,3 +81,11 @@ class AvailableAppointmentDates(View):
 
     def get_url(self):
         return reverse('schedule:dates')
+
+
+class ProcedurePrice(View):
+    def get(self, request, id):
+        procedure = Procedure.objects.get(id=id)
+        price = procedure.price
+        print('price', price)
+        return JsonResponse({'price': price})

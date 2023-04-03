@@ -7,7 +7,20 @@
     {% include 'global/partials/messages.html' %}
     <div class="main-content main-content-list container">
         <div class="text-wrapper">
-            <h2>{% translate 'These are our services, treatments and procedures' %}</h2>
+            <h2>{% translate 'These are our treatments and procedures' %}</h2>
+            <div class="procedures-list">
+                {% if procedures %}
+                    <ul>
+                        {% for procedure in procedures %}
+                            <li>
+                                #{{ procedure.id }} - {{ procedure }} - R${{ procedure.price }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>{% translate 'No procedures available at the moment' %}</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock content %}

@@ -12,4 +12,7 @@ urlpatterns = [
     path('app_times/',
          views.AvailableAppointmentTimes.as_view(),
          name='times'),
+    path('get_price/<int:id>/',
+         views.ProcedurePrice.as_view(),
+         name='price'),
 ]
