@@ -30,8 +30,11 @@ class UserDashboardView(LoginRequiredMixin, View):
     def get(self, request):
         appointments = Appointment.objects.filter(
             user=request.user, is_completed=False).order_by('date', 'time')
+        closed_appointments = Appointment.objects.filter(
+            user=request.user, is_completed=True).order_by('date', 'time')
         context = {
             'appointments': appointments,
+            'closed_appointments': closed_appointments,
         }
         return render(request, 'users/pages/dashboard.html', context=context)
 

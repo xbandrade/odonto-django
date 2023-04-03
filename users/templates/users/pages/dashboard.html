@@ -10,22 +10,78 @@
             <div class="appointment-list">
                 {% if appointments %}
                     <h4>{% translate 'Your Appointments' %}</h4>
-                    <ul>
-                        {% for appointment in appointments %}
-                            <li>
-                                {{ appointment }} - {{ appointment.procedure }} - {{ appointment.date }} {{ appointment.time }} - 
-                                <form class="inline-form form-delete" action="{% url 'users:appointment_delete' %}" method="POST">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="id" value="{{ appointment.id }}">
-                                    <button class="delete-button" type="submit">❌</button>
-                                </form>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>{% translate 'ID' %}</th>
+                                    <th>{% translate 'Procedure' %}</th>
+                                    <th>{% translate 'Date' %}</th>
+                                    <th>{% translate 'Time' %}</th>
+                                    <th>{% translate 'Price' %}</th>
+                                    <th>{% translate 'Confirmed' %}</th>
+                                    <th>{% translate 'Completed' %}</th>
+                                    <th>{% translate 'Cancel' %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in appointments %}
+                                    <tr>
+                                        <td>#{{ appointment.id }}</td>
+                                        <td>{{ appointment.procedure }}</td>
+                                        <td>{{ appointment.date }}</td>
+                                        <td>{{ appointment.time }}</td>
+                                        <td>R${{ appointment.procedure.price }}</td>
+                                        <td>{{ appointment.is_confirmed }}</td>
+                                        <td>{{ appointment.is_completed }}</td>
+                                        <td>                          
+                                            <form class="inline-form form-delete" action="{% url 'users:appointment_delete' %}" method="POST">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id" value="{{ appointment.id }}">
+                                                <button class="delete-button" type="submit">❌</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 {% else %}
                     <p>{% translate 'You have no appointments scheduled' %}</p>
                 {% endif %}
             </div>
+            <div class="appointment-list">
+                {% if closed_appointments %}
+                    <h4>{% translate 'Treatments History' %}</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>{% translate 'ID' %}</th>
+                                    <th>{% translate 'Procedure' %}</th>
+                                    <th>{% translate 'Date' %}</th>
+                                    <th>{% translate 'Time' %}</th>
+                                    <th>{% translate 'Price' %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in closed_appointments %}
+                                    <tr>
+                                        <td>#{{ appointment.id }}</td>
+                                        <td>{{ appointment.procedure }}</td>
+                                        <td>{{ appointment.date }}</td>
+                                        <td>{{ appointment.time }}</td>
+                                        <td>R${{ appointment.procedure.price }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
+    <script>
+        var currentLanguage = "{{ LANGUAGE_CODE }}";
+    </script>
 {% endblock content %}

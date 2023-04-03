@@ -8,7 +8,10 @@
     <div class="main-content main-content-list container">
         <div class="about-text">
             <ul>
-                <h1>{% translate "Welcome to OdontoDj!" %}</h1>
+                <div class="text-wrapper">
+                    <h1>{% translate "Welcome to OdontoDj!" %}</h1> 
+                    <img src="{% get_static_prefix %}global/img/od_logo.png" alt="Logo" width="5%">
+                </div>
                 {% for text in about_text %}
                     <li>
                         <h3>{{ text }}</h3>

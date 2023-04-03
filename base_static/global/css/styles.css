@@ -74,18 +74,21 @@
         color: var(--color-dark-text);
         transition: background-color .4s ease-in-out;
     }
-    
+
     table {
+        width: 100%;
         border-collapse: collapse;
+        border-spacing: 0px 50px;
     }
-
+    
     th, td {
-        border: 1px solid black;
         padding: 8px;
-        text-align: center;
+        text-align: left;
+        border-bottom: 2rem solid #ddd;
     }
-
+    
     th {
+        background-color: #f2f2f2;
         font-weight: bold;
     }
 
@@ -514,4 +517,10 @@
     .about-text h3 {
         margin: 2rem 25rem;
     }
-      
+    
+    .table-wrapper {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
