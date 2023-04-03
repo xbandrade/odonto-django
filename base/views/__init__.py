@@ -1,4 +1,4 @@
 # flake8: noqa
-from .about import *
+from .about_view import *
 from .home_view import *
 from .services_view import *

@@ -9,7 +9,7 @@ class ScheduleViewTest(TestCase, AppointmentMixin):
         self.appointment = self.make_appointment()
 
     def test_appointment_str_representation(self):
-        needed_str = f"#{self.appointment.id} - {self.appointment.user.username}'s Appointment"  # noqa
+        needed_str = f"#{self.appointment.id} - {self.appointment.user.first_name}'s Appointment"  # noqa
         self.assertEqual(
             str(self.appointment), needed_str,
             msg=f"Appointment str representation must be '{needed_str}',"

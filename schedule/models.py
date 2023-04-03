@@ -17,7 +17,7 @@ class Procedure(models.Model):
         verbose_name_plural = _('Procedures')
 
     def __str__(self) -> str:
-        return self.name
+        return f'{self.name} - R${self.price}'
 
 
 class AppointmentManager(models.Manager):
@@ -56,8 +56,8 @@ class Appointment(models.Model):
         verbose_name_plural = _('Appointments')
 
     def __str__(self):
-        username = self.user.username if self.user else 'NONE'
-        return _("#{id} - {username}'s Appointment").format(
+        name = self.user.first_name if self.user else 'NONE'
+        return _("#{id} - {name}'s Appointment").format(
             id=self.id,
-            username=username,
+            name=name,
         )

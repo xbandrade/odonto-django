@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
+from django.urls import reverse
 
 from tests.mixins import AppointmentMixin, ProfileMixin
 from users.forms import RegisterForm
+from users.models import Profile
 
 
 class UserProfileTest(TestCase, ProfileMixin):

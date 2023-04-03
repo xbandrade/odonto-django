@@ -7,7 +7,18 @@
         {% include 'global/partials/messages.html' %}
         <div class="dashboard-tag center">
             <h2>{% translate 'Dashboard' %}</h2>
-            <h3>{% translate 'Your Dashboard' %}</h3>
+            <div class="appointment-list">
+                {% if appointments %}
+                    <h4>{% translate 'Your Appointments' %}</h4>
+                    <ul>
+                        {% for appointment in appointments %}
+                            <li>{{ appointment }} - {{ appointment.procedure }} - {{ appointment.date }} {{ appointment.time }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>{% translate 'You have no appointments scheduled' %}</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock content %}

@@ -11,6 +11,8 @@ from users.forms import LoginForm
 
 class UserLoginView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect(reverse('users:dashboard'))
         form = LoginForm()
         context = {
             'form': form,

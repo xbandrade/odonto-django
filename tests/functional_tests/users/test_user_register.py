@@ -28,6 +28,40 @@ class UserRegisterTest(BaseFunctionalTest):
         callback(form)
         return form
 
+    def fill_form_valid_data(self,
+                             form,
+                             first='First',
+                             last='Last',
+                             username='firstlast',
+                             email='first@last.com',
+                             password='P@ssw0rd',
+                             cpf='12345678909',
+                             phone_number=2499912345):
+        self.get_by_placeholder(
+            form, 'Enter your first name'
+        ).send_keys(first)
+        self.get_by_placeholder(
+            form, 'Enter your last name'
+        ).send_keys(last)
+        self.get_by_placeholder(
+            form, 'Enter a username'
+        ).send_keys(username)
+        self.get_by_placeholder(
+            form, 'email@address.com'
+        ).send_keys(email)
+        self.get_by_placeholder(
+            form, 'Enter your password'
+        ).send_keys(password)
+        self.get_by_placeholder(
+            form, 'Enter your password again'
+        ).send_keys(password)
+        self.get_by_placeholder(
+            form, '12345678909'
+        ).send_keys(cpf)
+        self.get_by_placeholder(
+            form, '2499999999'
+        ).send_keys(phone_number)
+
     def test_first_name_empty_error_message(self):
         def callback(form):
             with translation.override('en'):
@@ -65,6 +99,42 @@ class UserRegisterTest(BaseFunctionalTest):
                 self.assertIn('Username is required', form.text)
         self.form_field_test_with_callback(callback)
 
+    def test_cpf_empty_error_message(self):
+        def callback(form):
+            with translation.override('en'):
+                username_field = self.get_by_placeholder(
+                    form, '12345678909'
+                )
+                username_field.send_keys(' ')
+                username_field.send_keys(Keys.ENTER)
+                form = self.get_form()
+                self.assertIn('CPF is required', form.text)
+        self.form_field_test_with_callback(callback)
+
+    def test_cpf_cannot_have_less_than_11_characters_long(self):
+        def callback(form):
+            with translation.override('en'):
+                username_field = self.get_by_placeholder(
+                    form, '12345678909'
+                )
+                username_field.send_keys('123456')
+                username_field.send_keys(Keys.ENTER)
+                form = self.get_form()
+                self.assertIn('CPF must have 11 digits', form.text)
+        self.form_field_test_with_callback(callback)
+
+    def test_cpf_cannot_be_invalid(self):
+        def callback(form):
+            with translation.override('en'):
+                username_field = self.get_by_placeholder(
+                    form, '12345678909'
+                )
+                username_field.send_keys('12345678999')
+                username_field.send_keys(Keys.ENTER)
+                form = self.get_form()
+                self.assertIn('CPF must be valid', form.text)
+        self.form_field_test_with_callback(callback)
+
     def test_passwords_do_not_match(self):
         def callback(form):
             with translation.override('en'):
@@ -85,27 +155,7 @@ class UserRegisterTest(BaseFunctionalTest):
         with translation.override('en'):
             self.browser.get(self.live_server_url + '/users/register/')
             form = self.get_form()
-            self.get_by_placeholder(
-                form, 'Enter your first name'
-            ).send_keys('First')
-            self.get_by_placeholder(
-                form, 'Enter your last name'
-            ).send_keys('Last')
-            self.get_by_placeholder(
-                form, 'Enter a username'
-            ).send_keys('firstlast')
-            self.get_by_placeholder(
-                form, 'email@address.com'
-            ).send_keys('first@last.com')
-            self.get_by_placeholder(
-                form, 'Enter your password'
-            ).send_keys('P@ssw0rd')
-            self.get_by_placeholder(
-                form, 'Enter your password again'
-            ).send_keys('P@ssw0rd')
-            self.get_by_placeholder(
-                form, '12345678909'
-            ).send_keys('12345678909')
+            self.fill_form_valid_data(form)
             form.submit()
             self.assertIn(
                 'User has been created, please log in',

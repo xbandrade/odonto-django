@@ -31,7 +31,7 @@ class UserRegisterFormUnitTest(TestCase):
             'one lowercase character and one number. The length should be '
             'at least 8 characters.'
         )),
-        ('cpf', 'Enter a valid CPF/CNPJ'),
+        ('cpf', 'Enter a valid CPF'),
     ])
     def test_fields_help_text(self, field, needed):
         with translation.override('en'):
@@ -45,7 +45,7 @@ class UserRegisterFormUnitTest(TestCase):
         ('email', 'Email'),
         ('password', 'Password'),
         ('password2', 'Repeat Password'),
-        ('cpf', 'CPF/CNPJ'),
+        ('cpf', 'CPF'),
         ('phone_number', 'Phone Number'),
     ])
     def test_fields_label(self, field, needed):
@@ -125,6 +125,15 @@ class UserRegisterFormIntegrationTest(DjangoTestCase):
             self.client.post(url, data=self.form_data, follow=True)
             response = self.client.post(url, data=self.form_data, follow=True)
             self.assertIn(msg, response.context['form'].errors.get('email'))
+            self.assertIn(msg, response.content.decode('utf-8'))
+
+    def test_cpf_field_must_be_unique(self):
+        with translation.override('en'):
+            msg = 'This CPF is already registered'
+            url = reverse('users:create')
+            self.client.post(url, data=self.form_data, follow=True)
+            response = self.client.post(url, data=self.form_data, follow=True)
+            self.assertIn(msg, response.context['form'].errors.get('cpf'))
             self.assertIn(msg, response.content.decode('utf-8'))
 
     def test_username_field_min_length_should_be_4(self):

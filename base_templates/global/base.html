@@ -14,7 +14,9 @@
         <main class="main-content-container">
             {% block content %}{% endblock %}
         </main>
-        {% include 'global/partials/footer.html' %}
+        {% if curr_path and is_home %}
+            {% include 'global/partials/footer.html' %}
+        {% endif %}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{% get_static_prefix %}global/js/scripts.js"></script>
         <script>

@@ -7,7 +7,7 @@ from users.models import Profile
 
 
 class ProfileMixin:
-    def make_category(self, name='Procedure', price=115.99):
+    def make_procedure(self, name='Procedure', price=115.99):
         return Procedure.objects.create(name=name, price=price)
 
     def make_user(self,
@@ -48,6 +48,18 @@ class ProfileMixin:
         profile.save()
         return user
 
+    def get_form_data(self, user):
+        profile = user.profile
+        return {
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'username': user.username,
+            'password': user.password,
+            'email': user.email,
+            'cpf': user.cpf,
+            'phone_number': profile.phone_number,
+        }
+
 
 class AppointmentMixin(ProfileMixin):
     appointment = None
@@ -69,7 +81,7 @@ class AppointmentMixin(ProfileMixin):
                 date += dt.timedelta(days=1)
             date = date.isoformat()
         return Appointment.objects.create(
-            procedure=self.make_category(**procedure_data),
+            procedure=self.make_procedure(**procedure_data),
             user=self.make_user(**user_data),
             date=date,
             time=time,

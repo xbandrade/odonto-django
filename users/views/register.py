@@ -6,10 +6,13 @@ from django.utils.translation import gettext as _
 from django.views import View
 
 from users.forms import RegisterForm
+from users.models import Profile
 
 
 class UserRegisterView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect(reverse('users:dashboard'))
         register_form_data = request.session.get('register_form_data')
         form = RegisterForm(register_form_data)
         context = {
@@ -33,6 +36,12 @@ class UserCreateView(View):
             user = form.save(commit=False)
             user.set_password(user.password)
             user.save()
+            profile = Profile.objects.create(
+                user=user,
+                cpf=form.cleaned_data['cpf'],
+                phone_number=form.cleaned_data['phone_number'],
+            )
+            profile.save()
             user_created_translation = _(
                 'User has been created, please log in'
             )

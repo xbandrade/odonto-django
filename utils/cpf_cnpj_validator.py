@@ -50,7 +50,7 @@ def valid_cnpj(cnpj):
         if result == cnpj % 10:
             return
     raise ValidationError(
-        (_('Please, enter a valid CNPJ')), code='invalid'
+        (_('Please, enter a valid CPF')), code='invalid'
     )
 
 
@@ -59,7 +59,7 @@ def cpf_validator(str_id):
         id = int(str_id)
     except ValueError:
         raise ValidationError(
-            (_('Invalid CPF or CNPJ')), code='invalid'
+            (_('Invalid CPF')), code='invalid'
         )
     if len(str_id) == 11:
         valid_cpf(id)
@@ -67,5 +67,5 @@ def cpf_validator(str_id):
         valid_cnpj(id)
     else:
         raise ValidationError(
-            (_('Invalid CPF or CNPJ')), code='invalid'
+            (_('Invalid CPF')), code='invalid'
         )

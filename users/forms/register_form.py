@@ -45,13 +45,15 @@ class RegisterForm(forms.ModelForm):
     )
     cpf = forms.CharField(
         error_messages={
-            'required': _('CPF or CNPJ is required'),
-            'invalid': _('CPF or CNPJ must be valid'),
+            'required': _('CPF is required'),
+            'invalid': _('CPF must be valid'),
+            'min_length': _('CPF must have 11 digits'),
         },
         required=True,
-        label=_('CPF/CNPJ'),
+        label=_('CPF'),
         validators=[cpf_validator],
-        help_text=_('Enter a valid CPF/CNPJ'),
+        help_text=_('Enter a valid CPF'),
+        min_length=11,
     )
     username = forms.CharField(
         label=_('Username'),
@@ -111,9 +113,18 @@ class RegisterForm(forms.ModelForm):
         exists = User.objects.filter(email=email).exists()
         if exists:
             raise ValidationError(
-                _('User email is already in use'), code='invalid'
+                _('User email is already in use'), code='unique'
             )
         return email
+
+    def clean_cpf(self):
+        cpf = self.cleaned_data.get('cpf', '')
+        exists = User.objects.filter(profile__cpf=cpf).exists()
+        if exists:
+            raise ValidationError(
+                _('This CPF is already registered'), code='unique'
+            )
+        return cpf
 
     def clean_username(self):
         data = self.cleaned_data.get('username')

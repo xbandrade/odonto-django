@@ -5,7 +5,7 @@ from django.utils import translation
 
 
 class UserLogoutTest(TestCase):
-    def test_user_tries_to_logout_using_get_method(self):
+    def test_user_cannot_logout_using_get_method(self):
         with translation.override('en'):
             User.objects.create_user(username='my_user', password='my_pass')
             self.client.login(username='my_user', password='my_pass')
@@ -18,7 +18,7 @@ class UserLogoutTest(TestCase):
                 response.content.decode('utf-8')
             )
 
-    def test_user_tries_to_logout_another_user(self):
+    def test_user_cannot_logout_another_user(self):
         with translation.override('en'):
             User.objects.create_user(username='my_user', password='my_pass')
             self.client.login(username='my_user', password='my_pass')

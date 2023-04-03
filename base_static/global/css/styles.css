@@ -179,7 +179,7 @@
     }
 
     .logo-container {
-        display: flex;
+        display: inline-block;
         justify-content: flex-start;
         align-items: center;
     }
@@ -487,4 +487,19 @@
         display: flex;
         justify-content: center;
         text-align: center;
+      }
+
+      .appointment-list {
+        text-align: left;
+        margin: 2rem;
+      }
+
+      .appointment-list li {
+        margin-bottom: 1rem;
+      }
+      
+      .appointment-list h4 {
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 2rem;
       }
