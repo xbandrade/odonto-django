@@ -6,36 +6,39 @@
 {% block content %}
     {% include 'global/partials/messages.html' %}
     <div class="main-content main-content-list container">
-        <div class="services-wrapper">
-            <div class="text-wrapper">
-                <h2>{% translate 'These are our treatments and procedures' %}</h2>
-            </div>
-            <div class="procedures-list">
-                {% if procedures %}
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>{% translate 'ID' %}</th>
-                                    <th>{% translate 'Procedure' %}</th>
-                                    <th>{% translate 'Price' %}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for procedure in procedures %}
+        <div class="services-container">
+            <div class="left">
+                <div class="text-wrapper">
+                    <h2>{% translate 'These are our treatments and procedures' %}</h2>
+                </div>
+                <div class="procedures-list center">
+                    {% if procedures %}
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td>#{{ procedure.id }}</td>
-                                        <td>{{ procedure }}</td>
-                                        <td>R${{ procedure.price }}</td>
+                                        <th>{% translate 'ID' %}</th>
+                                        <th>{% translate 'Procedure' %}</th>
+                                        <th>{% translate 'Price' %}</th>
                                     </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                {% else %}
-                    <p>{% translate 'No procedures available at the moment' %}</p>
-                {% endif %}
+                                </thead>
+                                <tbody>
+                                    {% for procedure in procedures %}
+                                        <tr>
+                                            <td>#{{ procedure.id }}</td>
+                                            <td>{{ procedure }}</td>
+                                            <td>R${{ procedure.price }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p>{% translate 'No procedures available at the moment' %}</p>
+                    {% endif %}
+                </div>
             </div>
+            <img class="right" src="{% get_static_prefix %}global/img/img4.jpg" alt="img4" width="35%">
         </div>
     </div>
 {% endblock content %}

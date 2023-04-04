@@ -1,19 +1,23 @@
 {% extends 'global/base.html' %}
 {% load i18n %}
+{% load static %}
 {% block title %}{% translate 'Schedule' %}{% endblock title %}
 
 {% block content %}
     <div class="main-content dashboard center container article">
-        {% include 'global/partials/messages.html' %}
-        <div class="dashboard-tag center">
-            <h2>{% translate 'Schedule an appointment' %}</h2>
-            <h3>{% translate '  ' %}</h3>
-        {% include 'global/partials/messages.html' %}
-        {% if user.is_authenticated %}
-            {% include 'global/partials/form.html' %}
-        {% else %}
-            <h3>❗{% translate 'You have to be logged in to book an appointment.' %}</h3>
-        {% endif %}
+        <div class="schedule-container">
+            <div class="left">
+                {% include 'global/partials/messages.html' %}
+                <h2>{% translate 'Schedule an appointment' %}</h2>
+                {% include 'global/partials/messages.html' %}
+                {% if user.is_authenticated %}
+                    {% include 'global/partials/form.html' %}
+                {% else %}
+                    <h2>❗{% translate 'You have to be logged in to book an appointment.' %}</h2>
+                    <h4><a href="{% url 'users:login' %}">{% translate 'Go to Login page' %}</a></h4>
+                {% endif %}
+            </div>
+            <img class="right" src="{% get_static_prefix %}global/img/img1.jpg" alt="img1" width="35%">
         </div>
     </div>
 {% endblock content %}

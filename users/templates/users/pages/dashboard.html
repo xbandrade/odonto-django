@@ -32,8 +32,20 @@
                                         <td>{{ appointment.date }}</td>
                                         <td>{{ appointment.time }}</td>
                                         <td>R${{ appointment.procedure.price }}</td>
-                                        <td>{{ appointment.is_confirmed }}</td>
-                                        <td>{{ appointment.is_completed }}</td>
+                                        <td>
+                                            {% if appointment.is_confirmed %}
+                                                ✔️
+                                            {% else %}
+                                                ✖️
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if appointment.is_completed %}
+                                                ✔️
+                                            {% else %}
+                                                ✖️
+                                            {% endif %}
+                                        </td>
                                         <td>                          
                                             <form class="inline-form form-delete" action="{% url 'users:appointment_delete' %}" method="POST">
                                                 {% csrf_token %}

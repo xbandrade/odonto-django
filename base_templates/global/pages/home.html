@@ -7,7 +7,14 @@
     {% include 'global/partials/messages.html' %}
     <div class="main-content main-content-list container">
         <div class="text-wrapper">
-            <h2>Welcome to OdontoDj!</h2>
+            <h2>{% translate 'Welcome to OdontoDj!' %}</h2>
+            <div class="home-container">
+                <span class="left">
+                    {% translate "We look forward<br> to helping you<br> achieve a healthy,<br> beautiful smile!<br>" %}
+                    <a href="{% url 'schedule:schedule' %}">{% translate "Schedule an appointment right now." %}</a>
+                </span>
+                <img class="right" src="{% get_static_prefix %}global/img/img2.jpg" alt="img2" width="50%">
+            </div>
         </div>
     </div>
 {% endblock content %}
