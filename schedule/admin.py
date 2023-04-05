@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .models import Appointment, Procedure
+from .models import Appointment, CustomSchedule, Procedure
 
 
+@admin.register(Procedure)
 class ProcedureAdmin(admin.ModelAdmin):
     ...
 
@@ -29,4 +30,21 @@ class AppointmentAdmin(admin.ModelAdmin):
     price.short_description = _('Price')
 
 
-admin.site.register(Procedure, ProcedureAdmin)
+@admin.register(CustomSchedule)
+class CustomScheduleAdmin(admin.ModelAdmin):
+    list_display = ('id', 'appointment', 'full_name',
+                    'procedure', 'sent_at', 'is_confirmed')
+    list_display_links = 'id', 'appointment'
+    search_fields = 'id', 'user', 'sent_at'
+    list_filter = 'id', 'procedure', 'is_confirmed'
+    list_per_page = 10
+    ordering = '-id',
+
+    def full_name(self, obj):
+        return f'{obj.user.first_name} {obj.user.last_name}'
+
+    def appointment(self, obj):
+        return f'{obj}'
+
+    full_name.short_description = _('Name')
+    appointment.short_description = _('Appointment')

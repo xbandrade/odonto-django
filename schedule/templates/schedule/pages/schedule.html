@@ -8,12 +8,18 @@
         <div class="schedule-container">
             <div class="schedule-form left">
                 {% include 'global/partials/messages.html' %}
-                <h2>{% translate 'Schedule an appointment' %}</h2>
+                <h2>{% translate 'Appointment Scheduler' %}</h2>
                 {% if user.is_authenticated and not schedule_failed %}
                     {% include 'global/partials/form.html' %}
-                {% else %}
+                    <div class="custom-link">
+                        <h2>{% translate "Don't see the procedure you're looking for?<br>" %}
+                        <a href="{% url 'schedule:custom' %}">{% translate "Schedule a custom appointment" %}</a></h2>
+                    </div>
+                {% elif not user.is_authenticated %}
                     <h2>❗{% translate 'You have to be logged in to book an appointment.' %}</h2>
                     <h4><a href="{% url 'users:login' %}">{% translate 'Go to Login page' %}</a></h4>
+                {% else %}
+                    <h3><a href="{% url 'users:dashboard' %}">{% translate 'Go to Dashboard' %}</a></h3>
                 {% endif %}
             </div>
             <img class="right" src="{% get_static_prefix %}global/img/img1.jpg" alt="img1" width="35%">

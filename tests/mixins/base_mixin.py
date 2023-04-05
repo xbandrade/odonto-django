@@ -2,7 +2,7 @@ import datetime as dt
 
 from django.contrib.auth.models import User
 
-from schedule.models import Appointment, Procedure
+from schedule.models import Appointment, CustomSchedule, Procedure
 from users.models import Profile
 
 
@@ -48,7 +48,7 @@ class ProfileMixin:
         profile.save()
         return user
 
-    def get_form_data(self, user):
+    def get_user_form_data(self, user):
         profile = user.profile
         return {
             'first_name': user.first_name,
@@ -86,3 +86,29 @@ class AppointmentMixin(ProfileMixin):
             date=date,
             time=time,
         )
+
+
+class CustomScheduleMixin(ProfileMixin):
+    def custom_schedule(self,
+                        user_data=None,
+                        procedure='Custom Procedure',
+                        date='22-08-2023',
+                        time='16:00',
+                        details='I need some custom treatments'):
+        if not user_data:
+            user_data = {}
+        return CustomSchedule.objects.create(
+            user=self.make_user(**user_data),
+            procedure=procedure,
+            date=date,
+            time=time,
+            details=details,
+        )
+
+    def get_form_data(self, custom_appointment):
+        return {
+            'procedure': custom_appointment.procedure,
+            'date': custom_appointment.date,
+            'time': custom_appointment.time,
+            'details': custom_appointment.details,
+        }

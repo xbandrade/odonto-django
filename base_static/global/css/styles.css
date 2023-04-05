@@ -132,6 +132,11 @@
         justify-content: left;
     }
 
+    .center-left {
+        justify-content: center;
+        align-items: center;
+    }
+
     .right {
         align-items: right;
         justify-content: right;
@@ -304,7 +309,6 @@
 
     .main-footer {
         height: 1.5rem;
-        /* position: absolute; */
         width: 100%;
         display: flex;
         align-items: center;
@@ -649,6 +653,17 @@
         transition: transform 0.6s ease-in-out;
     }
 
+    .schedule-container h3 {
+        font-family: var(--font-headings);
+        margin-right: 1rem;
+        text-align: center;
+        padding: 1rem;
+        background-color: var(--color-info-light);
+        border: none;
+        border-radius: 15%;
+        transition: transform 0.6s ease-in-out;
+    }
+
     .services-container {
         display: flex;
         justify-content: center;
@@ -725,4 +740,26 @@
         border: 2px solid #ddd;
         border-radius: 15%;
         transition: transform 0.6s ease-in-out;
+    }
+
+    .custom-link h2 {
+        font-size: 2rem;
+    }
+
+    .custom-link a {
+        text-decoration: none;
+        font-size: 2.2rem;
+        background: none;
+        color: var(--color-blue);
+        font-family: var(--font-headings);
+        text-align: center;
+        transition: color 1s ease-in-out;
+    }
+
+    .custom-link a:hover {
+        color: var(--color-purple);
+    }
+
+    .procedures {
+        justify-content: center;
     }

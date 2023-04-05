@@ -3,7 +3,7 @@ from django.test import TestCase
 from tests.mixins import AppointmentMixin
 
 
-class ScheduleViewTest(TestCase, AppointmentMixin):
+class ScheduleModelTest(TestCase, AppointmentMixin):
     def setUp(self):
         super().setUp()
         self.appointment = self.make_appointment()

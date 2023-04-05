@@ -67,3 +67,32 @@ class Appointment(models.Model):
             id=self.id,
             name=name,
         )
+
+
+class CustomSchedule(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        null=True,
+        verbose_name=_('User'),
+    )
+    procedure = models.CharField(max_length=50, verbose_name=_('Procedure'))
+    date = models.CharField(max_length=20, verbose_name=_('Date'))
+    time = models.CharField(max_length=20, verbose_name=_('Time'))
+    details = models.TextField(verbose_name=_('Details'))
+    sent_at = models.DateTimeField(
+        auto_now_add=True, verbose_name=_('Sent at')
+    )
+    is_confirmed = models.BooleanField(
+        default=False, verbose_name=_('Is confirmed')
+    )
+
+    class Meta:
+        verbose_name = _('Custom Appointment')
+        verbose_name_plural = _('Custom Appointments')
+
+    def __str__(self):
+        name = self.user.first_name if self.user else 'NONE'
+        return _("#{id} - {name}'s Custom Appointment").format(
+            id=self.id,
+            name=name,
+        )

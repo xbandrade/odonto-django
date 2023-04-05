@@ -1,0 +1,24 @@
+{% extends 'global/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% translate 'Custom Schedule' %}{% endblock title %}
+
+{% block content %}
+    <div class="main-content dashboard center container article">
+        <div class="schedule-container">
+            <div class="schedule-form left">
+                {% include 'global/partials/messages.html' %}
+                <h2>{% translate 'Custom Appointment Scheduler' %}</h2>
+                {% if user.is_authenticated and not schedule_failed %}
+                    {% include 'global/partials/form.html' %}
+                {% elif not user.is_authenticated %}
+                    <h2>❗{% translate 'You have to be logged in to book a custom appointment.' %}</h2>
+                    <h4><a href="{% url 'users:login' %}">{% translate 'Go to Login page' %}</a></h4>
+                {% else %}
+                    <h3><a href="{% url 'users:dashboard' %}">{% translate 'Go to Dashboard' %}</a></h3>
+                {% endif %}
+            </div>
+            <img class="right" src="{% get_static_prefix %}global/img/img3.jpg" alt="img3" width="35%">
+        </div>
+    </div>
+{% endblock content %}

@@ -19,6 +19,6 @@ urlpatterns = [
          views.AppointmentConfirmationView.as_view(),
          name='confirm'),
     path('custom/',
-         views.ScheduleCustomView.as_view(),
+         views.CustomScheduleView.as_view(),
          name='custom'),
 ]
