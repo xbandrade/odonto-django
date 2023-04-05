@@ -15,4 +15,10 @@ urlpatterns = [
     path('get_price/<int:id>/',
          views.ProcedurePrice.as_view(),
          name='price'),
+    path('confirm/<str:token>/',
+         views.AppointmentConfirmationView.as_view(),
+         name='confirm'),
+    path('custom/',
+         views.ScheduleCustomView.as_view(),
+         name='custom'),
 ]

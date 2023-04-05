@@ -37,8 +37,11 @@ class AppointmentValidator:
             if (t := f'{i:02d}:00') not in unavailable_times
         ]
         if date_str and time_str:
-            if not time_choices or date.weekday() == 6:
+            if date.weekday() == 6:
                 self.errors['date'].append(_('Invalid date selected.'))
+            if not time_choices:
+                self.errors['date'].append(
+                    _('No available times for this date.'))
             if time_str not in time_choices:
                 self.errors['time'].append(_('Invalid time selected.'))
         if self.errors:

@@ -1,0 +1,22 @@
+{% extends 'global/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% translate 'Schedule' %}{% endblock title %}
+
+{% block content %}
+    <div class="main-content confirmation center container article">
+        <div class="confirmation-container">
+            <div class="confirmation-messages">
+                {% include 'global/partials/messages.html' %}
+                {% if invalid %}
+                    <h2>❗{% translate 'Invalid confirmation token.' %}❗</h2>
+                {% elif already_confirmed %}
+                    <h2>❗{% translate 'Your appointment has already been confirmed.' %}</h2>
+                {% else %}
+                    <h2>{% translate 'Your appointment has been confirmed successfully!' %}</h2>
+                {% endif %}
+            </div>
+            <a class="confirmation-button" href="{% url 'users:dashboard' %}">{% translate 'Go to Dashboard' %}</a>
+        </div>
+    </div>
+{% endblock content %}

@@ -20,7 +20,6 @@
                                     <th>{% translate 'Time' %}</th>
                                     <th>{% translate 'Price' %}</th>
                                     <th>{% translate 'Confirmed' %}</th>
-                                    <th>{% translate 'Completed' %}</th>
                                     <th>{% translate 'Cancel' %}</th>
                                 </tr>
                             </thead>
@@ -34,13 +33,6 @@
                                         <td>R${{ appointment.procedure.price }}</td>
                                         <td>
                                             {% if appointment.is_confirmed %}
-                                                ✔️
-                                            {% else %}
-                                                ✖️
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if appointment.is_completed %}
                                                 ✔️
                                             {% else %}
                                                 ✖️

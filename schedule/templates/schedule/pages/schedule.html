@@ -9,7 +9,7 @@
             <div class="schedule-form left">
                 {% include 'global/partials/messages.html' %}
                 <h2>{% translate 'Schedule an appointment' %}</h2>
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and not schedule_failed %}
                     {% include 'global/partials/form.html' %}
                 {% else %}
                     <h2>❗{% translate 'You have to be logged in to book an appointment.' %}</h2>

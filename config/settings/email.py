@@ -18,4 +18,6 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'your_email@gmail.com')
 EMAIL_HOST_PASSWORD = os.environ.get(
     'EMAIL_HOST_PASSWORD', 'your_email_password')
 
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'Your Name')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
+
+EMAIL_LOGO_URL = os.environ.get('EMAIL_LOGO_URL', '')
