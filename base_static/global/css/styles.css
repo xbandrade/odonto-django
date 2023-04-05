@@ -8,6 +8,8 @@
     --color-purple: #250b38;
     --color-purple-alpha: #250b38D5;
     
+    --color-blue-bg: #e3f7fa;
+
     --color-blue-alpha: #379BBB85;
     --color-blue: #379BBB;
 
@@ -536,6 +538,10 @@
         margin-bottom: 20px;
     }
 
+    .dashboard table {
+        width: 100%;
+    }
+
     .home-container {
         display: flex;
         justify-content: center;
@@ -565,6 +571,7 @@
         border-radius: 15%;
         transition: transform 0.6s ease-in-out;
         margin-left: 2rem;
+        object-fit: contain;
     }
     
     .home-container img:hover {
@@ -585,12 +592,14 @@
         display: flex;
         justify-content: center;
         margin-top: 3rem;
+        width: 100%;
     }
 
     .schedule-container img {
         border-radius: 15%;
         transition: transform 0.6s ease-in-out;
         margin-left: 2rem;
+        object-fit: contain;
     }
     
     .schedule-container img:hover {
@@ -678,4 +687,4 @@
     }
     .services-container table {
         align-items: center;
-    }
+    }  

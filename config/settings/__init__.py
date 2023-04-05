@@ -5,6 +5,7 @@ from .middlewares import *  # isort: skip
 from .assets import *
 from .cors_headers import *
 from .databases import *
+from .email import *
 from .i18n import *
 from .messages import *
 from .rest_framework import *

@@ -22,15 +22,17 @@ class AppointmentForm(forms.ModelForm):
         self.fields['procedure'].widget.choices = [
             (p.pk, p.name) for p in Procedure.objects.all()
         ]
-        first_procedure = Procedure.objects.first()
-        self.fields['procedure'].initial = first_procedure.pk
-        self.fields['procedure'].label = _('Select a procedure')
-        price_str = '{:,.2f}'.format(first_procedure.price).replace('.', ',')
-        self.fields['price'].initial = _(f'R$ {price_str}')
         today = dt.date.today()
         date_choices = [
             (today + dt.timedelta(days=i)).isoformat() for i in range(1, 61)
         ]
+        first_procedure = Procedure.objects.first().id
+        price_str = '{:,.2f}'.format(
+            Procedure.objects.first().price
+        ).replace('.', ',')
+        self.fields['procedure'].initial = first_procedure
+        self.fields['procedure'].label = _('Select a procedure')
+        self.fields['price'].initial = f'R$ {price_str}'
         unavailable_times = Appointment.objects.filter(
             date=date_choices[0]).values_list('time', flat=True)
         unavailable_times = {t.strftime('%H:%M') for t in unavailable_times}
@@ -60,6 +62,6 @@ class AppointmentForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         AppointmentValidator(
-            self.cleaned_data, self.fields, ErrorClass=ValidationError
+            cleaned_data, self.fields, ErrorClass=ValidationError
         )
         return cleaned_data

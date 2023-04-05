@@ -84,7 +84,6 @@ class RegisterForm(forms.ModelForm):
         validators=[strong_password],
         label=_('Password'),
     )
-
     password2 = forms.CharField(
         required=True,
         widget=forms.PasswordInput(),

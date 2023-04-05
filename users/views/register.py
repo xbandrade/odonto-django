@@ -39,7 +39,7 @@ class UserCreateView(View):
             profile = Profile.objects.create(
                 user=user,
                 cpf=form.cleaned_data['cpf'],
-                phone_number=form.cleaned_data['phone_number'],
+                phone_number=form.cleaned_data.get('phone_number', 0),
             )
             profile.save()
             user_created_translation = _(

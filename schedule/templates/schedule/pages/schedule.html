@@ -6,10 +6,9 @@
 {% block content %}
     <div class="main-content dashboard center container article">
         <div class="schedule-container">
-            <div class="left">
+            <div class="schedule-form left">
                 {% include 'global/partials/messages.html' %}
                 <h2>{% translate 'Schedule an appointment' %}</h2>
-                {% include 'global/partials/messages.html' %}
                 {% if user.is_authenticated %}
                     {% include 'global/partials/form.html' %}
                 {% else %}

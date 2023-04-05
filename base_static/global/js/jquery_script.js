@@ -1,10 +1,10 @@
 $(document).ready(function() {
     let dateField = $('#id_date');
     let timeField = $('#id_time');
-    let firstDate = $(this).val()
+    let selectedDate = dateField.val();
     dateField.change(function() {
         console.log('date changed', $(this).val());
-        let selectedDate = $(this).val();
+        selectedDate = $(this).val();
         $.get('/schedule/app_times/', {date: selectedDate}, function(data) {
             timeField.empty();
             $.each(data.available_times, function(index, time) {
@@ -26,6 +26,7 @@ $(document).ready(function() {
                     text: date
                 }));
             });
+            dateField.val(selectedDate);
         });
     });
 });

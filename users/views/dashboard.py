@@ -47,5 +47,5 @@ class DashboardAppointmentDelete(UserDashboardView):
     def post(self, *args, **kwargs):
         appointment = self.get_appointment(self.request.POST.get('id'))
         appointment.delete()
-        messages.success(self.request, _('Appointment successfully deleted'))
+        messages.success(self.request, _('Appointment successfully canceled'))
         return redirect(reverse('users:dashboard'))

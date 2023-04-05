@@ -20,17 +20,26 @@ class AppointmentValidator:
         time = cleaned_data.get('time')
         if Appointment.objects.filter(date=date, time=time).first():
             self.errors['date'].append(
-                _('An appointment at this time has already been booked!')
+                _('An appointment at this date and time '
+                  'has already been booked!')
             )
             self.errors['time'].append(
-                _('An appointment at this time has already been booked!')
+                _('An appointment at this date and time '
+                  'has already been booked!')
             )
         date_str = date.isoformat()
         time_str = time.strftime('%H:%M')
+        unavailable_times = Appointment.objects.filter(
+            date=date_str).values_list('time', flat=True)
+        unavailable_times = {t.strftime('%H:%M') for t in unavailable_times}
+        time_choices = [
+            t for i in range(8, 18)
+            if (t := f'{i:02d}:00') not in unavailable_times
+        ]
         if date_str and time_str:
-            if (date_str, date_str) not in self.fields['date'].widget.choices:
+            if not time_choices or date.weekday() == 6:
                 self.errors['date'].append(_('Invalid date selected.'))
-            if (time_str, time_str) not in self.fields['time'].widget.choices:
+            if time_str not in time_choices:
                 self.errors['time'].append(_('Invalid time selected.'))
         if self.errors:
             raise self.ErrorClass(self.errors)
