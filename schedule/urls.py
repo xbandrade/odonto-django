@@ -4,6 +4,12 @@ from rest_framework.routers import SimpleRouter
 from schedule import views
 
 app_name = 'schedule'
+schedule_api_router = SimpleRouter()
+# schedule_api_router.register(
+#     'recipes/api/v2',
+#     views.RecipeAPIv2ViewSet,
+#     basename='schedule-api',
+# )
 
 urlpatterns = [
     path('', views.ScheduleView.as_view(), name='schedule'),

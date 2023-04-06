@@ -148,3 +148,4 @@ class RegisterForm(forms.ModelForm):
                     password_error,
                 ],
             })
+        return cleaned_data

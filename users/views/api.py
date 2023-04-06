@@ -1,15 +1,17 @@
 from django.contrib.auth import get_user_model
+from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.viewsets import ModelViewSet
 
 from users.serializers import UserSerializer
 
 
-class UserAPIViewSet(ReadOnlyModelViewSet):
+class UserAPIViewSet(ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, ]
+    http_method_names = ['get', 'post']
 
     def get_queryset(self):
         User = get_user_model()
@@ -26,3 +28,9 @@ class UserAPIViewSet(ReadOnlyModelViewSet):
             instance=obj,
         )
         return Response(serializer.data)
+
+    def create(self, request, *args, **kwargs):
+        serializer = UserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
