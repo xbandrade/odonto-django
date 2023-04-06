@@ -33,7 +33,7 @@ class AppointmentForm(forms.ModelForm):
         ).replace('.', ',')
         self.fields['procedure'].initial = (first_procedure.id
                                             if first_procedure else 1)
-        self.fields['procedure'].label = _('Select a procedure')
+        self.fields['procedure'].label = _('Procedure')
         self.fields['price'].initial = f'R$ {price_str}'
         for d, date_choice in enumerate(date_choices):
             unavailable_times = Appointment.objects.filter(
@@ -74,6 +74,6 @@ class AppointmentForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         AppointmentValidator(
-            cleaned_data, self.fields, ErrorClass=ValidationError
+            cleaned_data, ErrorClass=ValidationError
         )
         return cleaned_data

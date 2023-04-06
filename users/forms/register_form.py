@@ -66,7 +66,7 @@ class RegisterForm(forms.ModelForm):
         },
         min_length=4, max_length=150,
     )
-    phone_number = forms.IntegerField(
+    phone_number = forms.CharField(
         label=_('Phone Number'),
         required=False,
     )

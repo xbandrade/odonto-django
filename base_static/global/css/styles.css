@@ -763,3 +763,6 @@
     .procedures {
         justify-content: center;
     }
+    .procedures table {
+        width: 100%;
+    }

@@ -16,7 +16,7 @@ class ProfileMixin:
                   username='username',
                   password='P@Ssw0rd123',
                   email='user@usermail.com',
-                  cpf='27304709057',
+                  cpf='06174322017',
                   phone_number=''):
         user = User.objects.create_user(
             first_name=first_name,

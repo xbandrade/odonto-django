@@ -7,11 +7,10 @@ from schedule.models import Appointment
 
 
 class AppointmentValidator:
-    def __init__(self, data, fields, errors=None, ErrorClass=None):
+    def __init__(self, data, errors=None, ErrorClass=None):
         self.errors = errors or defaultdict(lambda: [])
         self.ErrorClass = ErrorClass or ValidationError
         self.data = data
-        self.fields = fields
         self.clean()
 
     def clean(self, *args, **kwargs):

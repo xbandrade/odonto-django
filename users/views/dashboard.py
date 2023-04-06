@@ -28,10 +28,16 @@ class UserDashboardView(LoginRequiredMixin, View):
         return appointment
 
     def get(self, request):
-        appointments = Appointment.objects.filter(
-            user=request.user, is_completed=False).order_by('date', 'time')
-        closed_appointments = Appointment.objects.filter(
-            user=request.user, is_completed=True).order_by('date', 'time')
+        appointments = Appointment.objects.select_related(
+            'user', 'procedure'
+        ).filter(
+            user=request.user, is_completed=False
+        ).order_by('date', 'time')
+        closed_appointments = Appointment.objects.select_related(
+            'user', 'procedure'
+        ).filter(
+            user=request.user, is_completed=True
+        ).order_by('date', 'time')
         context = {
             'appointments': appointments,
             'closed_appointments': closed_appointments,
@@ -40,7 +46,7 @@ class UserDashboardView(LoginRequiredMixin, View):
 
 
 @method_decorator(
-    login_required(login_url='authors:login', redirect_field_name='next'),
+    login_required(login_url='users:login', redirect_field_name='next'),
     name='dispatch'
 )
 class DashboardAppointmentDelete(UserDashboardView):

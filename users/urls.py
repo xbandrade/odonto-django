@@ -1,8 +1,17 @@
 from django.urls import path
+from rest_framework.routers import SimpleRouter
+from rest_framework_simplejwt.views import (TokenObtainPairView,
+                                            TokenRefreshView, TokenVerifyView)
 
 from users import views
 
 app_name = 'users'
+user_api_router = SimpleRouter()
+user_api_router.register(
+    'api',
+    views.UserAPIViewSet,
+    basename='user-api',
+)
 
 urlpatterns = [
     path('register/', views.UserRegisterView.as_view(), name='register'),
@@ -15,4 +24,12 @@ urlpatterns = [
     path('clear/', views.ClearSessionView.as_view(), name='clear'),
     path('delete/', views.DashboardAppointmentDelete.as_view(),
          name='appointment_delete'),
+    path('api/token/',
+         TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/',
+         TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/',
+         TokenVerifyView.as_view(), name='token_verify'),
 ]
+
+urlpatterns += user_api_router.urls
