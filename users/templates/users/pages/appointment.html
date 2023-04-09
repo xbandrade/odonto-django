@@ -1,0 +1,59 @@
+{% extends 'global/base.html' %}
+{% load i18n %}
+{% block title %}{{ appointment }}{% endblock title %}
+
+{% block content %}
+    <div class="main-content main-content-detail container">
+        <div class="appointment appointment-list-item">
+            <div class="appointment-title-container">
+                <h2 class="appointment-title center">
+                    {{ appointment }}
+                </h2>
+            </div>
+            <div class="appointment-user">
+                <span>
+                    <h2><i class="fas fa-user"></i> {% translate "User" %}</h2>
+                    {% if appointment.user %}
+                        {% if appointment.user.first_name %}
+                            {{ appointment.user.first_name }} {{ appointment.user.last_name }}
+                        {% else %}
+                            {{ appointment.user.username }}
+                        {% endif %}
+                    {% endif %}
+                </span>
+                <span>
+                    <h2><i class="fas fa-layer-group"></i> {% translate "Procedure" %}</h2>
+                    {{ appointment.procedure }}
+                </span>
+                <span>
+                    <h2><i class="fas fa-calendar-alt"></i> {% translate "Appointment date and time" %}</h2>
+                    {{ appointment.date|date:"d/m/Y" }} {% translate 'at' %} {{ appointment.time|date:"H:i" }}
+                </span>
+                <span>
+                    <h2><i class="fas fa-calendar-alt"></i> {% translate "Scheduled at" %}</h2>
+                    {{ appointment.scheduled_at|date:"d/m/Y" }} {% translate 'at' %} {{ appointment.scheduled_at|date:"H:i" }}
+                </span>
+                <span>
+                    <h2><i class="fas fa-calendar-alt"></i> {% translate "Updated at" %}</h2>
+                    {{ appointment.updated_at|date:"d/m/Y" }} {% translate 'at' %} {{ appointment.updated_at|date:"H:i" }}
+                </span>
+                <span>
+                    <h2><i class="fas fa-calendar-check"></i> {% translate "Appointment confirmed" %}</h2>
+                    {% if appointment.is_confirmed %}
+                        ✔️
+                    {% else %}
+                        ✖️
+                    {% endif %}
+                </span>
+                <span>
+                    <h2><i class="fas fa-check-double"></i> {% translate "Appointment completed" %}</h2>
+                    {% if appointment.is_completed %}
+                        ✔️
+                    {% else %}
+                        ✖️
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

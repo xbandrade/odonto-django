@@ -682,6 +682,7 @@
         transition-delay: 0s;
     }
 
+    .appointment-title-container h2,
     .services-container h2 {
         font-size: 3rem;
         font-family: var(--font-headings);
@@ -696,6 +697,7 @@
         transition: transform 0.6s ease-in-out;
     }
 
+    .appointment-title-container h2:hover,
     .services-container h2:hover {
         transform: scale(1.05);
         transition-delay: 0s;
@@ -765,4 +767,32 @@
     }
     .procedures table {
         width: 100%;
+    }
+    
+    .appointment-user {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .appointment-user span {
+        text-align: center;
+        align-items: center;
+        font-size: 1.8rem;
+        font-family: var(--font-headings);
+        border: .5rem solid var(--color-blue-alpha);
+        padding: 2rem;
+        margin-bottom: 4rem;
+        border-radius: 15%;
+        margin-left: .5rem;
+        margin-right: .5rem;
+        width: calc(100% / 3 - 2rem);
+        background-color: #00ffff15;
+    }
+    
+    .appointment-title-container {
+        text-align: center;
+        align-items: center;
+        margin-top: 2rem;
     }

@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.views import View
 
-from schedule.models import Appointment, Procedure
+from schedule.models import Appointment
 
 
 class AvailableAppointmentTimes(View):
@@ -41,10 +41,3 @@ class AvailableAppointmentDates(View):
 
     def get_url(self):
         return reverse('schedule:dates')
-
-
-class ProcedurePrice(View):
-    def get(self, request, id):
-        procedure = Procedure.objects.get(id=id)
-        price = procedure.price
-        return JsonResponse({'price': price})

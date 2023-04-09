@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from django.views import View
+from django.views.generic import DetailView
 
 from schedule.models import Appointment
 
@@ -55,3 +56,14 @@ class DashboardAppointmentDelete(UserDashboardView):
         appointment.delete()
         messages.success(self.request, _('Appointment successfully canceled'))
         return redirect(reverse('users:dashboard'))
+
+
+class AppointmentDetailView(DetailView):
+    model = Appointment
+    context_object_name = 'appointment'
+    template_name = 'users/pages/appointment.html'
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(user=self.request.user)
+        return queryset

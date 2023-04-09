@@ -26,7 +26,9 @@
                             <tbody>
                                 {% for appointment in appointments %}
                                     <tr>
-                                        <td>#{{ appointment.id }}</td>
+                                        <td>
+                                            <a href="{% url 'users:appointment_detail' appointment.id %}">#{{ appointment.id }}</a>
+                                        </td>
                                         <td>{{ appointment.procedure }}</td>
                                         <td>{{ appointment.date }}</td>
                                         <td>{{ appointment.time }}</td>
@@ -71,7 +73,7 @@
                             <tbody>
                                 {% for appointment in closed_appointments %}
                                     <tr>
-                                        <td>#{{ appointment.id }}</td>
+                                        <td><a href="{% url 'users:appointment_detail' appointment.id %}">#{{ appointment.id }}</a></td>
                                         <td>{{ appointment.procedure }}</td>
                                         <td>{{ appointment.date }}</td>
                                         <td>{{ appointment.time }}</td>
