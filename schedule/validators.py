@@ -3,7 +3,7 @@ from collections import defaultdict
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from schedule.models import Appointment
+from schedule.models import Appointment, Procedure
 
 
 class AppointmentValidator:
@@ -43,5 +43,14 @@ class AppointmentValidator:
                     _('No available times for this date.'))
             if time_str not in time_choices:
                 self.errors['time'].append(_('Invalid time selected.'))
+        try:
+            procedure = cleaned_data.get('procedure')
+            procedure_obj = Procedure.objects.filter(id=procedure.id).first()
+            if not procedure_obj:
+                raise ValidationError
+        except (TypeError, ValidationError):
+            self.errors['procedure'].append(_('Invalid procedure selected.'))
+        except AttributeError:
+            self.errors['procedure'].append(_('Procedure is a NoneType.'))
         if self.errors:
             raise self.ErrorClass(self.errors)

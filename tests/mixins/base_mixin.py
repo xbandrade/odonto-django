@@ -7,9 +7,6 @@ from users.models import Profile
 
 
 class ProfileMixin:
-    def make_procedure(self, name='Procedure', price=115.99):
-        return Procedure.objects.create(name=name, price=price)
-
     def make_user(self,
                   first_name='User',
                   last_name='Name',
@@ -56,14 +53,36 @@ class ProfileMixin:
             'username': user.username,
             'password': user.password,
             'email': user.email,
-            'cpf': user.cpf,
+            'cpf': profile.cpf,
             'phone_number': profile.phone_number,
+        }
+
+    def create_user_data(self):
+        return {
+            'first_name': 'firstnametst',
+            'last_name': 'lastnametst',
+            'username': 'usernametst',
+            'password': 'Pa$$w0rd',
+            'password2': 'Pa$$w0rd',
+            'email': 'testemail@emailtst.com',
+            'cpf': '50135860709',
+            'phone_number': '',
         }
 
 
 class AppointmentMixin(ProfileMixin):
     appointment = None
     today = None
+
+    def get_next_available_date(self):
+        self.today = dt.date.today()
+        date = self.today + dt.timedelta(days=8)
+        if date.weekday() == 6:
+            date += dt.timedelta(days=1)
+        return date.isoformat()
+
+    def make_procedure(self, name='Procedure', price=115.99):
+        return Procedure.objects.create(name=name, name_pt=name, price=price)
 
     def make_appointment(self,
                          procedure_data=None,
@@ -73,19 +92,29 @@ class AppointmentMixin(ProfileMixin):
         if not procedure_data:
             procedure_data = {}
         if not user_data:
-            user_data = {}
+            user_data = self.make_user()
         if not date:
-            self.today = dt.date.today()
-            date = self.today + dt.timedelta(days=8)
-            if date.weekday() == 6:
-                date += dt.timedelta(days=1)
-            date = date.isoformat()
+            date = self.get_next_available_date()
         return Appointment.objects.create(
             procedure=self.make_procedure(**procedure_data),
-            user=self.make_user(**user_data),
+            user=user_data,
             date=date,
             time=time,
         )
+
+    def make_appointments_in_batch(self, user_data, datetime_list):
+        for date, time in datetime_list:
+            self.make_appointment(user_data=user_data, date=date, time=time)
+
+    def get_appointment_form(self, user=None, procedure=None):
+        user = user or self.make_user()
+        procedure = procedure or self.make_procedure('TestingProc')
+        return {
+            'user': user.id,
+            'procedure': procedure.name,
+            'date': self.get_next_available_date(),
+            'time': '15:00',
+        }
 
 
 class CustomScheduleMixin(ProfileMixin):

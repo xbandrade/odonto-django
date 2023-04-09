@@ -21,7 +21,9 @@ class AppointmentAdmin(admin.ModelAdmin):
     ordering = '-id',
 
     def full_name(self, obj):
-        return f'{obj.user.first_name} {obj.user.last_name}'
+        if obj.user:
+            return f'{obj.user.first_name} {obj.user.last_name}'
+        return 'NONE'
 
     def price(self, obj):
         return obj.procedure.price

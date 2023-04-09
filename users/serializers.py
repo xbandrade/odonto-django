@@ -38,8 +38,6 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         form_data = self.get_form_data(validated_data)
         register_form = RegisterForm(form_data)
-        print(register_form)
-        print(validated_data)
         if register_form.is_valid():
             user = register_form.save(commit=False)
             user.set_password(validated_data['password'])

@@ -5,11 +5,11 @@ from schedule import views
 
 app_name = 'schedule'
 schedule_api_router = SimpleRouter()
-# schedule_api_router.register(
-#     'recipes/api/v2',
-#     views.RecipeAPIv2ViewSet,
-#     basename='schedule-api',
-# )
+schedule_api_router.register(
+    'api',
+    views.ScheduleAPIViewSet,
+    basename='schedule-api',
+)
 
 urlpatterns = [
     path('', views.ScheduleView.as_view(), name='schedule'),
@@ -29,3 +29,5 @@ urlpatterns = [
          views.CustomScheduleView.as_view(),
          name='custom'),
 ]
+
+urlpatterns += schedule_api_router.urls

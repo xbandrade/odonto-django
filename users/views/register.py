@@ -42,10 +42,10 @@ class UserCreateView(View):
                 phone_number=form.cleaned_data.get('phone_number', 0),
             )
             profile.save()
-            user_created_translation = _(
+            user_created = _(
                 'User has been created, please log in'
             )
-            messages.success(request, user_created_translation)
+            messages.success(request, user_created)
             del request.session['register_form_data']
             return redirect(reverse('users:login'))
         return redirect('users:register')

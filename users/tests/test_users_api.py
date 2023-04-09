@@ -62,3 +62,27 @@ class UsersAPITest(APITestCase, UsersAPIMixin):
             response.status_code,
             status.HTTP_404_NOT_FOUND
         )
+
+    def test_users_api_cannot_create_user_if_not_authenticated(self):
+        form_data = self.create_user_data()
+        url = reverse('users:user-api-list')
+        response = self.client.post(url, data=form_data)
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_401_UNAUTHORIZED
+        )
+
+    def test_users_api_can_successfully_create_new_user_if_authenticated(self):
+        auth_data = self.get_auth_data()
+        jwt_access_token = auth_data.get('jwt_access_token')
+        form_data = self.create_user_data()
+        url = reverse('users:user-api-list')
+        response = self.client.post(
+            url,
+            data=form_data,
+            HTTP_AUTHORIZATION=f'Bearer {jwt_access_token}'
+        )
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED
+        )
