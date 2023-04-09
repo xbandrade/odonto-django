@@ -121,3 +121,35 @@ class ScheduleAPITest(APITestCase, ScheduleAPIMixin):
             response.status_code,
             status.HTTP_403_FORBIDDEN
         )
+
+    def test_schedule_api_user_can_cancel_their_own_appointment(self):
+        auth_data = self.get_auth_data()
+        user = auth_data.get('user')
+        jwt_access_token = auth_data.get('jwt_access_token')
+        appointment = self.make_appointment(user_data=user)
+        id = appointment.id
+        url = reverse('schedule:schedule-api-detail', args=(id,))
+        response = self.client.delete(
+            url,
+            HTTP_AUTHORIZATION=f'Bearer {jwt_access_token}'
+        )
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_204_NO_CONTENT
+        )
+
+    def test_schedule_api_user_cannot_cancel_someone_elses_appointment(self):
+        another_user = self.make_another_user()
+        auth_data = self.get_auth_data()
+        jwt_access_token = auth_data.get('jwt_access_token')
+        appointment = self.make_appointment(user_data=another_user)
+        id = appointment.id
+        url = reverse('schedule:schedule-api-detail', args=(id,))
+        response = self.client.delete(
+            url,
+            HTTP_AUTHORIZATION=f'Bearer {jwt_access_token}'
+        )
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_404_NOT_FOUND
+        )

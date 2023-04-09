@@ -13,7 +13,7 @@ from schedule.serializers import AppointmentSerializer
 class ScheduleAPIViewSet(ModelViewSet):
     serializer_class = AppointmentSerializer
     permission_classes = [IsAuthenticated, ]
-    http_method_names = ['get', 'post']
+    http_method_names = ['get', 'post', 'delete']
 
     def get_queryset(self):
         qs = Appointment.objects.filter(user=self.request.user).order_by('-id')
@@ -45,7 +45,9 @@ class ScheduleAPIViewSet(ModelViewSet):
         }
         serializer = AppointmentSerializer(data=serializer_data)
         serializer.is_valid(raise_exception=True)
-        if request.user.id != serializer.validated_data.get('user'):
+        logged_user = request.user
+        appointment_user = serializer.validated_data.get('user')
+        if logged_user.id != appointment_user.id:
             raise PermissionDenied(
                 'You are not allowed to schedule for another user.'
             )

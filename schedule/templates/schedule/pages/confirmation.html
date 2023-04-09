@@ -16,7 +16,11 @@
                     <h2>{% translate 'Your appointment has been confirmed successfully!' %}</h2>
                 {% endif %}
             </div>
-            <a class="confirmation-button" href="{% url 'users:dashboard' %}">{% translate 'Go to Dashboard' %}</a>
+            {% if user.is_authenticated %}
+                <a class="confirmation-button" href="{% url 'users:dashboard' %}">{% translate 'Go to Dashboard' %}</a>
+            {% else %}
+                <a class="confirmation-button" href="{% url 'users:login' %}">{% translate 'Go to Login page' %}</a>
+            {% endif %}
         </div>
     </div>
 {% endblock content %}
