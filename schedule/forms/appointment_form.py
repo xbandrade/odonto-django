@@ -53,7 +53,8 @@ class AppointmentForm(forms.ModelForm):
                   'available times for any dates soon.')
             )
         date_choices = [
-            (date_choice, date_choice)
+            (date_choice, dt.datetime.strptime(
+                date_choice, '%Y-%m-%d').strftime('%d-%m-%Y'))
             for date_choice in date_choices
             if dt.date.fromisoformat(date_choice).weekday() != 6
         ]

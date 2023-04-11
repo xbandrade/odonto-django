@@ -13,6 +13,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', '1') == '1'
 
+LOCAL_RUN = os.environ.get('LOCAL_RUN', '1') == '1'
+
 ALLOWED_HOSTS = os.environ.get(
     'ALLOWED_HOSTS', 'localhost'
 ).strip().split(',')
@@ -23,8 +25,6 @@ CSRF_TRUSTED_ORIGINS = os.environ.get(
 
 ROOT_URLCONF = 'config.urls'
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.app'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-LOCAL_RUN = os.environ.get('LOCAL_RUN', '1') == '1'

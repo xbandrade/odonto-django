@@ -31,11 +31,12 @@ class AvailableAppointmentDates(View):
             time=selected_time).values_list('date', flat=True)
         today = dt.date.today()
         all_dates = [
-            (today + dt.timedelta(days=i)).isoformat() for i in range(1, 61)
-            if (today + dt.timedelta(days=i)).weekday() != 6
+            d.isoformat() for i in range(1, 61)
+            if (d := (today + dt.timedelta(days=i))).weekday() != 6
         ]
         available_dates = [
-            date for date in all_dates if date not in booked_appointments
+            (date, dt.datetime.strptime(date, '%Y-%m-%d').strftime('%d-%m-%Y'))
+            for date in all_dates if date not in booked_appointments
         ]
         return JsonResponse({'available_dates': available_dates})
 

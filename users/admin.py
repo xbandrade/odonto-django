@@ -24,7 +24,8 @@ class ProfileForm(forms.ModelForm):
 
 
 class CustomUserAdmin(UserAdmin):
-    list_display = ('username', 'email', 'full_name', 'cpf', 'phone_number')
+    list_display = ('id', 'username', 'email',
+                    'full_name', 'cpf', 'phone_number')
     form = ProfileForm
     inlines = (ProfileInline,)
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-10 23:42-0300\n"
+"POT-Creation-Date: 2023-04-11 13:51-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,11 +54,11 @@ msgstr ""
 
 #: .\base\views\about_view.py:27
 msgid ""
-"Thank you for choosing OdontoDj for your dental needs - we look forward to "
+"Thank you for choosing OdontoDj for your dental needs. We look forward to "
 "helping you achieve a healthy, beautiful smile!"
 msgstr ""
-"Obrigado por escolher a OdontoDj para suas necessidades odontológicas - "
-"estamos ansiosos para ajudá-lo a alcançar um sorriso bonito e saudável!"
+"Obrigado por escolher a OdontoDj para suas necessidades odontológicas. "
+"Estamos ansiosos para auxiliá-lo a alcançar um sorriso bonito e saudável!"
 
 #: .\base_templates\global\pages\about.html:5
 #: .\base_templates\global\pages\home.html:5
@@ -75,7 +75,7 @@ msgid ""
 "We look forward<br> to helping you<br> achieve a healthy,<br> beautiful "
 "smile!<br>"
 msgstr ""
-"Estamos ansiosos para<br> te ajudar a alcançar<br> um sorriso belo <br> e "
+"Estamos ansiosos<br>para auxiliá-lo a<br>alcançar um sorriso<br> bonito e "
 "saudável!<br>"
 
 #: .\base_templates\global\pages\home.html:16
@@ -98,15 +98,15 @@ msgid "ID"
 msgstr "ID"
 
 #: .\base_templates\global\pages\services.html:21
-#: .\schedule\forms\appointment_form.py:36 .\schedule\models.py:18
-#: .\schedule\models.py:78 .\users\templates\users\pages\appointment.html:25
+#: .\schedule\forms\appointment_form.py:36 .\schedule\models.py:19
+#: .\schedule\models.py:79 .\users\templates\users\pages\appointment.html:25
 #: .\users\templates\users\pages\dashboard.html:21
 #: .\users\templates\users\pages\dashboard.html:70
 msgid "Procedure"
 msgstr "Procedimento"
 
 #: .\base_templates\global\pages\services.html:22 .\schedule\admin.py:32
-#: .\schedule\forms\appointment_form.py:15 .\schedule\models.py:14
+#: .\schedule\forms\appointment_form.py:15 .\schedule\models.py:15
 #: .\users\templates\users\pages\dashboard.html:24
 #: .\users\templates\users\pages\dashboard.html:73
 msgid "Price"
@@ -170,12 +170,12 @@ msgstr "Inglês"
 msgid "Portuguese (Brazil)"
 msgstr "Português (Brasil)"
 
-#: .\schedule\admin.py:31 .\schedule\admin.py:51 .\schedule\models.py:9
+#: .\schedule\admin.py:31 .\schedule\admin.py:51 .\schedule\models.py:10
 #: .\users\admin.py:49
 msgid "Name"
 msgstr "Nome"
 
-#: .\schedule\admin.py:52 .\schedule\models.py:61
+#: .\schedule\admin.py:52 .\schedule\models.py:62
 msgid "Appointment"
 msgstr "Consulta"
 
@@ -183,77 +183,77 @@ msgstr "Consulta"
 msgid "Sorry, we currently have no available times for any dates soon."
 msgstr "Desculpe, não temos horários disponíveis no momento."
 
-#: .\schedule\models.py:10
+#: .\schedule\models.py:11
 msgid "PT Name"
 msgstr "Nome PT"
 
-#: .\schedule\models.py:19
+#: .\schedule\models.py:20
 msgid "Procedures"
 msgstr "Procedimentos"
 
-#: .\schedule\models.py:37 .\schedule\models.py:76
+#: .\schedule\models.py:38 .\schedule\models.py:77
 #: .\users\templates\users\pages\appointment.html:15
 msgid "User"
 msgstr "Usuário"
 
-#: .\schedule\models.py:41 .\users\templates\users\pages\appointment.html:33
+#: .\schedule\models.py:42 .\users\templates\users\pages\appointment.html:33
 msgid "Scheduled at"
 msgstr "Agendado em"
 
-#: .\schedule\models.py:44 .\users\templates\users\pages\appointment.html:37
+#: .\schedule\models.py:45 .\users\templates\users\pages\appointment.html:37
 msgid "Updated at"
 msgstr "Atualizado em"
 
-#: .\schedule\models.py:47
+#: .\schedule\models.py:48
 msgid "Is completed"
 msgstr "Completo"
 
-#: .\schedule\models.py:50 .\schedule\models.py:86
+#: .\schedule\models.py:51 .\schedule\models.py:87
 msgid "Is confirmed"
 msgstr "Confirmado"
 
-#: .\schedule\models.py:52 .\schedule\models.py:79
+#: .\schedule\models.py:53 .\schedule\models.py:80
 #: .\users\templates\users\pages\dashboard.html:22
 #: .\users\templates\users\pages\dashboard.html:71
 msgid "Date"
 msgstr "Data"
 
-#: .\schedule\models.py:53 .\schedule\models.py:80
+#: .\schedule\models.py:54 .\schedule\models.py:81
 #: .\users\templates\users\pages\dashboard.html:23
 #: .\users\templates\users\pages\dashboard.html:72
 msgid "Time"
 msgstr "Horário"
 
-#: .\schedule\models.py:56
+#: .\schedule\models.py:57
 msgid "Confirmation token"
 msgstr "Token de confirmação"
 
-#: .\schedule\models.py:62
+#: .\schedule\models.py:63
 msgid "Appointments"
 msgstr "Consultas"
 
-#: .\schedule\models.py:66
+#: .\schedule\models.py:67
 #, python-brace-format
 msgid "#{id} - {name}'s Appointment"
 msgstr "#{id} - Consulta de {name}"
 
-#: .\schedule\models.py:81
+#: .\schedule\models.py:82
 msgid "Details"
 msgstr "Detalhes"
 
-#: .\schedule\models.py:83
+#: .\schedule\models.py:84
 msgid "Sent at"
 msgstr "Enviado em"
 
-#: .\schedule\models.py:90
+#: .\schedule\models.py:91
 msgid "Custom Appointment"
 msgstr "Consulta Personalizada"
 
-#: .\schedule\models.py:91
+#: .\schedule\models.py:92
 msgid "Custom Appointments"
 msgstr "Consultas Personalizadas"
 
-#: .\schedule\models.py:95
+#: .\schedule\models.py:96
 #, python-brace-format
 msgid "#{id} - {name}'s Custom Appointment"
 msgstr "#{id} - Consulta de {name}"
@@ -609,7 +609,7 @@ msgstr "Logout realizado com sucesso"
 
 #: .\users\views\register.py:48
 msgid "User has been created, please log in"
-msgstr "Usuário criado, por favor faça login"
+msgstr "Usuário criado, por favor, faça login"
 
 #: .\users\views\update.py:55
 msgid "User information has been updated"

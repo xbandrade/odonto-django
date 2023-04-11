@@ -17,7 +17,7 @@ def send_confirmation(appointment, site_url):
                      '{site}\n\n'
                      'Best regards,\n'
                      'OdontoDj').format(
-        date=appointment.date.strftime('%d-%b-%Y'),
+        date=appointment.date.strftime('%d-%m-%Y'),
         time=appointment.time,
         name=str(appointment.procedure),
         price=str(appointment.procedure.price).replace('.', ','),

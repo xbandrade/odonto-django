@@ -1,9 +1,8 @@
-from django.conf import settings
-
+from .environment import DEBUG, LOCAL_RUN
 from .installed_apps import INSTALLED_APPS
 from .middlewares import MIDDLEWARE
 
-if settings.DEBUG and settings.LOCAL_RUN:
+if DEBUG and LOCAL_RUN:
     INSTALLED_APPS += [
         'debug_toolbar',
     ]

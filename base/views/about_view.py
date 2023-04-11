@@ -25,7 +25,7 @@ class AboutView(BaseView):
               "home, and keep track of your previous treatments "
               "and progress."),
             _("Thank you for choosing OdontoDj for your dental "
-              "needs - we look forward to helping you achieve a healthy, "
+              "needs. We look forward to helping you achieve a healthy, "
               "beautiful smile!"),
         ]
         context['about_text'] = about_text

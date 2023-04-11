@@ -695,7 +695,7 @@
     }
 
     .services-container img {
-        border-radius: 15%;
+        border-radius: 50%;
         transition: transform 0.6s ease-in-out;
         margin-left: 2rem;
         object-fit: contain;
