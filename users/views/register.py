@@ -10,6 +10,8 @@ from users.models import Profile
 
 
 class UserRegisterView(View):
+    template_name = 'users/pages/register.html'
+
     def get(self, request):
         if request.user.is_authenticated:
             return redirect(reverse('users:dashboard'))
@@ -20,7 +22,7 @@ class UserRegisterView(View):
             'form_action': reverse('users:create'),
         }
         return render(
-            request, 'users/pages/register.html', context=context
+            request, self.template_name, context=context
         )
 
 

@@ -1,3 +1,5 @@
+from string import ascii_letters as letters
+
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -69,6 +71,9 @@ class RegisterForm(forms.ModelForm):
     phone_number = forms.CharField(
         label=_('Phone Number'),
         required=False,
+        error_messages={
+            'invalid': _('The phone number provided is invalid'),
+        }
     )
     password = forms.CharField(
         required=True,
@@ -124,6 +129,14 @@ class RegisterForm(forms.ModelForm):
                 _('This CPF is already registered'), code='unique'
             )
         return cpf
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get('phone_number', '')
+        if any(char in phone_number for char in letters):
+            raise ValidationError(
+                _('The phone number provided is invalid'), code='invalid'
+            )
+        return phone_number
 
     def clean_username(self):
         data = self.cleaned_data.get('username')

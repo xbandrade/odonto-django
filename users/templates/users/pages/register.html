@@ -3,9 +3,13 @@
 {% block title %}{% translate 'Register' %}{% endblock title %}
 
 {% block content %}
-    <div class="main-content center container">
-        <h2>{% translate 'Register' %}</h2>
+    <div class="main-content center container article">
+        <h2 class="register-page">{% translate 'Register' %}</h2>
+        {% include 'global/partials/messages.html' %}
+        {% if not user.is_authenticated %}
+            <div class="register-form-wrapper">
+                {% include 'global/partials/form.html' %}
+            </div>
+        {% endif %}
     </div>
-    {% include 'global/partials/messages.html' %}
-    {% include 'global/partials/form.html' %}
 {% endblock content %}

@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from users.forms import RegisterForm
+from users.forms import RegisterForm, UpdateForm
 from users.models import Profile
 
 
@@ -35,6 +35,20 @@ class UserSerializer(serializers.ModelSerializer):
             'phone_number': phone_number,
         }
 
+    def get_updated_data(self, user, validated_data):
+        profile = validated_data.get('profile', {})
+        phone_number = profile.get('phone_number', user.profile.phone_number)
+        return {
+            'username': validated_data.get('username', user.username),
+            'password': validated_data.get('password', user.password),
+            'password2': validated_data.get('password2', user.password),
+            'email': validated_data.get('email', user.email),
+            'first_name': validated_data.get('first_name', user.first_name),
+            'last_name': validated_data.get('last_name', user.last_name),
+            'cpf': user.profile.cpf,
+            'phone_number': phone_number,
+        }
+
     def create(self, validated_data):
         form_data = self.get_form_data(validated_data)
         register_form = RegisterForm(form_data)
@@ -52,9 +66,29 @@ class UserSerializer(serializers.ModelSerializer):
         else:
             raise serializers.ValidationError(register_form.errors)
 
+    def update(self, user, validated_data):
+        form_data = self.get_updated_data(user, validated_data)
+        update_form = UpdateForm(data=form_data, instance=user)
+        if update_form.is_valid():
+            user.username = form_data.get(
+                'username', user.username)
+            user.first_name = form_data.get(
+                'first_name', user.first_name)
+            user.last_name = form_data.get(
+                'last_name', user.last_name)
+            user.email = form_data.get('email', user.email)
+            user.profile.phone_number = form_data.get(
+                'phone_number', user.profile.phone_number)
+            user.save()
+            return user
+        else:
+            raise serializers.ValidationError(update_form.errors)
+
     def validate(self, data):
-        if not data.get('profile'):
-            raise serializers.ValidationError('Profile data cannot be empty.')
-        if data['password'] != data['password2']:
-            raise serializers.ValidationError('Passwords must match.')
+        if self.context['request'].method != 'PATCH':
+            if not data.get('profile'):
+                raise serializers.ValidationError(
+                    'Profile data cannot be empty.')
+            if data['password'] != data['password2']:
+                raise serializers.ValidationError('Passwords must match.')
         return data
