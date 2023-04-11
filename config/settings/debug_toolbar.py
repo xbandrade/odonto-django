@@ -10,7 +10,7 @@ if settings.DEBUG and settings.LOCAL_RUN:
     MIDDLEWARE = [
         'debug_toolbar.middleware.DebugToolbarMiddleware', ] + MIDDLEWARE
     DEBUG_TOOLBAR_CONFIG = {
-        'SHOW_TOOLBAR_CALLBACK': lambda request: True,
+        'SHOW_TOOLBAR_CALLBACK': lambda request: False,
     }
 
 INTERNAL_IPS = [

@@ -21,7 +21,7 @@ class AppointmentForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self._my_errors = defaultdict(lambda: [])
         self.fields['procedure'].widget.choices = [
-            (p.pk, p.name) for p in Procedure.objects.all()
+            (p.pk, p) for p in Procedure.objects.all()
         ]
         today = dt.date.today()
         date_choices = [

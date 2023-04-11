@@ -1,0 +1,694 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-10 23:42-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\base\views\about_view.py:13
+msgid ""
+"We are a premier dental clinic dedicated to providing the highest quality "
+"dental care to our patients."
+msgstr ""
+"Nós somos uma clínica odontológica dedicada a fornecer tratamentos da melhor "
+"qualidade para nossos pacientes."
+
+#: .\base\views\about_view.py:16
+msgid ""
+"At OdontoDj, we offer a full range of dental services, from routine check-"
+"ups and cleanings to complex restorative procedures. Our facility is "
+"equipped with the latest technology and equipment to ensure that you receive "
+"the best possible care."
+msgstr ""
+"Na OdontoDj, nós oferecemos uma gama completa de serviços odontológicos, "
+"desde check-ups de rotina e limpezas a procedimentos de restaurações "
+"complexas. Nossas instalações são equipadas com a mais recente tecnologia e "
+"equipamentos que garantem que você receberá o melhor tratamento possível."
+
+#: .\base\views\about_view.py:21
+msgid ""
+"In addition to our exceptional dental services, we are proud to offer "
+"convenient online appointment scheduling and access to your treatment "
+"history. This means that you can easily schedule your next appointment from "
+"the comfort of your own home, and keep track of your previous treatments and "
+"progress."
+msgstr ""
+"Além de nossos serviços odontológicos excepcionais, nós temos orgulho de "
+"oferecer agendamento de consultas online e acesso ao seu histórico de "
+"tratamento de forma conveniente. Isso significa que você pode facilmente "
+"marcar sua próxima consulta do conforto de sua casa, e acompanhar o "
+"progresso de suas consultas e seus tratamentos prévios."
+
+#: .\base\views\about_view.py:27
+msgid ""
+"Thank you for choosing OdontoDj for your dental needs - we look forward to "
+"helping you achieve a healthy, beautiful smile!"
+msgstr ""
+"Obrigado por escolher a OdontoDj para suas necessidades odontológicas - "
+"estamos ansiosos para ajudá-lo a alcançar um sorriso bonito e saudável!"
+
+#: .\base_templates\global\pages\about.html:5
+#: .\base_templates\global\pages\home.html:5
+msgid "Home"
+msgstr "Início"
+
+#: .\base_templates\global\pages\about.html:12
+#: .\base_templates\global\pages\home.html:11
+msgid "Welcome to OdontoDj!"
+msgstr "Bem-vindo à OdontoDj!"
+
+#: .\base_templates\global\pages\home.html:15
+msgid ""
+"We look forward<br> to helping you<br> achieve a healthy,<br> beautiful "
+"smile!<br>"
+msgstr ""
+"Estamos ansiosos para<br> te ajudar a alcançar<br> um sorriso belo <br> e "
+"saudável!<br>"
+
+#: .\base_templates\global\pages\home.html:16
+msgid "Schedule an appointment right now."
+msgstr "Agende uma consulta agora mesmo."
+
+#: .\base_templates\global\pages\services.html:5
+#: .\base_templates\global\partials\header.html:12
+msgid "Services"
+msgstr "Serviços"
+
+#: .\base_templates\global\pages\services.html:12
+msgid "These are our treatments and procedures"
+msgstr "Estes são nossos tratamentos e procedimentos"
+
+#: .\base_templates\global\pages\services.html:20
+#: .\users\templates\users\pages\dashboard.html:20
+#: .\users\templates\users\pages\dashboard.html:69
+msgid "ID"
+msgstr "ID"
+
+#: .\base_templates\global\pages\services.html:21
+#: .\schedule\forms\appointment_form.py:36 .\schedule\models.py:18
+#: .\schedule\models.py:78 .\users\templates\users\pages\appointment.html:25
+#: .\users\templates\users\pages\dashboard.html:21
+#: .\users\templates\users\pages\dashboard.html:70
+msgid "Procedure"
+msgstr "Procedimento"
+
+#: .\base_templates\global\pages\services.html:22 .\schedule\admin.py:32
+#: .\schedule\forms\appointment_form.py:15 .\schedule\models.py:14
+#: .\users\templates\users\pages\dashboard.html:24
+#: .\users\templates\users\pages\dashboard.html:73
+msgid "Price"
+msgstr "Preço"
+
+#: .\base_templates\global\pages\services.html:37
+msgid "No procedures available at the moment"
+msgstr "Nenhum procedimento disponível no momento"
+
+#: .\base_templates\global\partials\form.html:24
+msgid "Please, fix the errors in the form"
+msgstr "Por favor, corrija os erros no formulário"
+
+#: .\base_templates\global\partials\form.html:33
+#: .\users\templates\users\pages\change_password.html:3
+#: .\users\templates\users\pages\change_password.html:7
+msgid "Change Password"
+msgstr "Alterar Senha"
+
+#: .\base_templates\global\partials\form.html:39
+msgid "Submit"
+msgstr "Enviar"
+
+#: .\base_templates\global\partials\header.html:15
+#: .\schedule\templates\schedule\pages\confirmation.html:4
+#: .\schedule\templates\schedule\pages\schedule.html:4
+msgid "Schedule"
+msgstr "Agendar"
+
+#: .\base_templates\global\partials\header.html:18
+msgid "About"
+msgstr "Sobre"
+
+#: .\base_templates\global\partials\header.html:22
+#: .\users\templates\users\pages\dashboard.html:3
+#: .\users\templates\users\pages\dashboard.html:9
+msgid "Dashboard"
+msgstr "Painel do Usuário"
+
+#: .\base_templates\global\partials\header.html:28
+msgid "Logout"
+msgstr "Logout"
+
+#: .\base_templates\global\partials\header.html:33
+#: .\users\templates\users\pages\register.html:3
+#: .\users\templates\users\pages\register.html:7
+msgid "Register"
+msgstr "Registrar"
+
+#: .\base_templates\global\partials\header.html:36
+#: .\users\templates\users\pages\login.html:3
+#: .\users\templates\users\pages\login.html:7
+msgid "Login"
+msgstr "Login"
+
+#: .\config\settings\i18n.py:21
+msgid "English"
+msgstr "Inglês"
+
+#: .\config\settings\i18n.py:22
+msgid "Portuguese (Brazil)"
+msgstr "Português (Brasil)"
+
+#: .\schedule\admin.py:31 .\schedule\admin.py:51 .\schedule\models.py:9
+#: .\users\admin.py:49
+msgid "Name"
+msgstr "Nome"
+
+#: .\schedule\admin.py:52 .\schedule\models.py:61
+msgid "Appointment"
+msgstr "Consulta"
+
+#: .\schedule\forms\appointment_form.py:52
+msgid "Sorry, we currently have no available times for any dates soon."
+msgstr "Desculpe, não temos horários disponíveis no momento."
+
+#: .\schedule\models.py:10
+msgid "PT Name"
+msgstr "Nome PT"
+
+#: .\schedule\models.py:19
+msgid "Procedures"
+msgstr "Procedimentos"
+
+#: .\schedule\models.py:37 .\schedule\models.py:76
+#: .\users\templates\users\pages\appointment.html:15
+msgid "User"
+msgstr "Usuário"
+
+#: .\schedule\models.py:41 .\users\templates\users\pages\appointment.html:33
+msgid "Scheduled at"
+msgstr "Agendado em"
+
+#: .\schedule\models.py:44 .\users\templates\users\pages\appointment.html:37
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: .\schedule\models.py:47
+msgid "Is completed"
+msgstr "Completo"
+
+#: .\schedule\models.py:50 .\schedule\models.py:86
+msgid "Is confirmed"
+msgstr "Confirmado"
+
+#: .\schedule\models.py:52 .\schedule\models.py:79
+#: .\users\templates\users\pages\dashboard.html:22
+#: .\users\templates\users\pages\dashboard.html:71
+msgid "Date"
+msgstr "Data"
+
+#: .\schedule\models.py:53 .\schedule\models.py:80
+#: .\users\templates\users\pages\dashboard.html:23
+#: .\users\templates\users\pages\dashboard.html:72
+msgid "Time"
+msgstr "Horário"
+
+#: .\schedule\models.py:56
+msgid "Confirmation token"
+msgstr "Token de confirmação"
+
+#: .\schedule\models.py:62
+msgid "Appointments"
+msgstr "Consultas"
+
+#: .\schedule\models.py:66
+#, python-brace-format
+msgid "#{id} - {name}'s Appointment"
+msgstr "#{id} - Consulta de {name}"
+
+#: .\schedule\models.py:81
+msgid "Details"
+msgstr "Detalhes"
+
+#: .\schedule\models.py:83
+msgid "Sent at"
+msgstr "Enviado em"
+
+#: .\schedule\models.py:90
+msgid "Custom Appointment"
+msgstr "Consulta Personalizada"
+
+#: .\schedule\models.py:91
+msgid "Custom Appointments"
+msgstr "Consultas Personalizadas"
+
+#: .\schedule\models.py:95
+#, python-brace-format
+msgid "#{id} - {name}'s Custom Appointment"
+msgstr "#{id} - Consulta de {name}"
+
+#: .\schedule\serializers.py:48
+msgid "This field is required."
+msgstr "Este campo é requerido."
+
+#: .\schedule\serializers.py:51 .\schedule\validators.py:52
+msgid "Invalid procedure selected."
+msgstr "Procedimento inválido selecionado."
+
+#: .\schedule\templates\schedule\pages\confirmation.html:12
+msgid "Invalid confirmation token."
+msgstr "Token de confirmação inválido."
+
+#: .\schedule\templates\schedule\pages\confirmation.html:14
+msgid "Your appointment has already been confirmed."
+msgstr "Sua consulta já foi confirmada."
+
+#: .\schedule\templates\schedule\pages\confirmation.html:16
+msgid "Your appointment has been confirmed successfully!"
+msgstr "Sua consulta foi confirmada com sucesso!"
+
+#: .\schedule\templates\schedule\pages\confirmation.html:20
+#: .\schedule\templates\schedule\pages\custom_schedule.html:18
+#: .\schedule\templates\schedule\pages\schedule.html:22
+msgid "Go to Dashboard"
+msgstr "Ir para o Painel de Usuário"
+
+#: .\schedule\templates\schedule\pages\confirmation.html:22
+#: .\schedule\templates\schedule\pages\custom_schedule.html:16
+#: .\schedule\templates\schedule\pages\schedule.html:20
+msgid "Go to Login page"
+msgstr "Ir para a página de Login"
+
+#: .\schedule\templates\schedule\pages\custom_schedule.html:4
+msgid "Custom Schedule"
+msgstr "Agendamento Personalizado"
+
+#: .\schedule\templates\schedule\pages\custom_schedule.html:11
+msgid "Custom Appointment Scheduler"
+msgstr "Agendar Consulta Personalizada"
+
+#: .\schedule\templates\schedule\pages\custom_schedule.html:15
+msgid "You have to be logged in to book a custom appointment."
+msgstr "Você deve estar logado para marcar uma consulta personalizada."
+
+#: .\schedule\templates\schedule\pages\schedule.html:11
+msgid "Appointment Scheduler"
+msgstr "Agendar Consulta"
+
+#: .\schedule\templates\schedule\pages\schedule.html:15
+msgid "Don't see the procedure you're looking for?<br>"
+msgstr "Não encontrou o procedimento que você precisa?<br>"
+
+#: .\schedule\templates\schedule\pages\schedule.html:16
+msgid "Schedule a custom appointment"
+msgstr "Agende uma consulta personalizada"
+
+#: .\schedule\templates\schedule\pages\schedule.html:19
+msgid "You have to be logged in to book an appointment."
+msgstr "Você deve estar logado para marcar uma consulta."
+
+#: .\schedule\validators.py:22 .\schedule\validators.py:26
+msgid "An appointment at this date and time has already been booked!"
+msgstr "Uma consulta já foi marcada nesta data e horário!"
+
+#: .\schedule\validators.py:40
+msgid "Invalid date selected."
+msgstr "Data inválida selecionada."
+
+#: .\schedule\validators.py:43
+msgid "No available times for this date."
+msgstr "Nenhum horário disponível para esta data."
+
+#: .\schedule\validators.py:45
+msgid "Invalid time selected."
+msgstr "Horário inválido selecionado."
+
+#: .\schedule\validators.py:54
+msgid "Procedure is a NoneType."
+msgstr "Procedimento é um NoneType."
+
+#: .\schedule\views\custom_schedule_view.py:36
+msgid ""
+"Thank you for submitting your custom treatment request! Our team will "
+"promptly review your request and provide a response via email."
+msgstr ""
+"Obrigado por enviar seu pedido de tratamento personalizado! Nosso time "
+"avaliará prontamente o seu pedido e fornecerá uma resposta via email."
+
+#: .\schedule\views\custom_schedule_view.py:41
+msgid "Failed to book your custom appointment!"
+msgstr "Falha ao agendar sua consulta personalizada!"
+
+#: .\schedule\views\schedule_view.py:38
+msgid ""
+"Thank you for scheduling your appointment! You will receive an email shortly "
+"to confirm your appointment details."
+msgstr ""
+"Obrigado por agendar sua consulta! Você receberá um email em breve para "
+"confirmar detalhes de sua consulta."
+
+#: .\schedule\views\schedule_view.py:45
+msgid "Failed to book your appointment!"
+msgstr "Falha ao agendar sua consulta!"
+
+#: .\users\admin.py:50 .\users\forms\register_form.py:55
+msgid "CPF"
+msgstr "CPF"
+
+#: .\users\admin.py:51
+msgid "Phone number"
+msgstr "Número de telefone"
+
+#: .\users\forms\login.py:10
+msgid "Enter your username"
+msgstr "Insira seu nome de usuário"
+
+#: .\users\forms\login.py:11 .\users\forms\register_form.py:21
+msgid "Enter your password"
+msgstr "Insira sua senha"
+
+#: .\users\forms\register_form.py:15
+msgid "Enter your first name"
+msgstr "Insira seu nome"
+
+#: .\users\forms\register_form.py:16
+msgid "Enter your last name"
+msgstr "Insira seu sobrenome"
+
+#: .\users\forms\register_form.py:17
+msgid "email@address.com"
+msgstr "email@exemplo.com"
+
+#: .\users\forms\register_form.py:18
+msgid "Enter a username"
+msgstr "Insira um nome de usuário"
+
+#: .\users\forms\register_form.py:19
+msgid "12345678909"
+msgstr "12345678909"
+
+#: .\users\forms\register_form.py:20
+msgid "2499999999"
+msgstr "2499999999"
+
+#: .\users\forms\register_form.py:23
+msgid "Enter your password again"
+msgstr "Repita sua senha"
+
+#: .\users\forms\register_form.py:27
+msgid "First name cannot be empty"
+msgstr "Nome não pode estar vazio"
+
+#: .\users\forms\register_form.py:30
+msgid "First Name"
+msgstr "Nome"
+
+#: .\users\forms\register_form.py:34
+msgid "Last name cannot be empty"
+msgstr "Sobrenome não pode estar vazio"
+
+#: .\users\forms\register_form.py:37
+msgid "Last Name"
+msgstr "Sobrenome"
+
+#: .\users\forms\register_form.py:41
+msgid "Email is required"
+msgstr "Email é requerido"
+
+#: .\users\forms\register_form.py:42
+msgid "The email must be valid"
+msgstr "O email deve ser válido"
+
+#: .\users\forms\register_form.py:45
+msgid "Email"
+msgstr "Email"
+
+#: .\users\forms\register_form.py:46
+msgid "Enter a valid email"
+msgstr "Insira um email válido"
+
+#: .\users\forms\register_form.py:50
+msgid "CPF is required"
+msgstr "CPF é requerido"
+
+#: .\users\forms\register_form.py:51
+msgid "CPF must be valid"
+msgstr "CPF deve ser válido"
+
+#: .\users\forms\register_form.py:52
+msgid "CPF must have 11 digits"
+msgstr "CPF deve ter 11 dígitos"
+
+#: .\users\forms\register_form.py:57
+msgid "Enter a valid CPF"
+msgstr "Insira um CPF válido"
+
+#: .\users\forms\register_form.py:61
+msgid "Username"
+msgstr "Nome de usuário"
+
+#: .\users\forms\register_form.py:62
+msgid ""
+"Username must have letters, numbers or symbols. The length should be between "
+"4 and 150 characters."
+msgstr ""
+"O nome de usuário deve conter letras, números ou símbolos. O tamanho deve "
+"estar entre 4 e 150 caracteres."
+
+#: .\users\forms\register_form.py:65
+msgid "Username is required"
+msgstr "Nome de usuário é requerido"
+
+#: .\users\forms\register_form.py:66
+msgid "Username must have at least 4 characters"
+msgstr "Nome de usuário deve ter pelo menos 4 caracteres"
+
+#: .\users\forms\register_form.py:67
+msgid "Username must have 150 characters or less"
+msgstr "Nome de usuário deve ter 150 caracteres ou menos"
+
+#: .\users\forms\register_form.py:72
+msgid "Phone Number"
+msgstr "Número de Telefone"
+
+#: .\users\forms\register_form.py:75 .\users\forms\register_form.py:137
+#: .\users\forms\update_form.py:60
+msgid "The phone number provided is invalid"
+msgstr "O número de telefone fornecido é inválido"
+
+#: .\users\forms\register_form.py:82
+msgid ""
+"Password must contain at least one uppercase character, one lowercase "
+"character and one number. The length should be at least 8 characters."
+msgstr ""
+"A senha deve conter pelo menos um caractere maiúsculo, um caractere "
+"minúsculo e um número. O tamanho deve ser pelo menos 8 caracteres."
+
+#: .\users\forms\register_form.py:87
+msgid "Password must not be empty"
+msgstr "Senha não pode estar vazia"
+
+#: .\users\forms\register_form.py:90
+msgid "Password"
+msgstr "Senha"
+
+#: .\users\forms\register_form.py:96
+msgid "Repeat Password"
+msgstr "Repita a Senha"
+
+#: .\users\forms\register_form.py:98
+msgid "Please repeat your password"
+msgstr "Por favor, repita sua senha"
+
+#: .\users\forms\register_form.py:120 .\users\forms\update_form.py:72
+msgid "User email is already in use"
+msgstr "Email já está em uso"
+
+#: .\users\forms\register_form.py:129
+msgid "This CPF is already registered"
+msgstr "Este CPF já está registrado"
+
+#: .\users\forms\register_form.py:145
+msgid "Forbidden username"
+msgstr "Nome de usuário proibido"
+
+#: .\users\forms\register_form.py:156 .\users\forms\update_form.py:23
+msgid "Passwords must match"
+msgstr "As senhas devem ser iguais"
+
+#: .\users\forms\update_form.py:13
+msgid "New Password"
+msgstr "Nova Senha"
+
+#: .\users\forms\update_form.py:15
+msgid "Confirm New Password"
+msgstr "Confirme a Nova Senha"
+
+#: .\users\templates\users\pages\appointment.html:29
+msgid "Appointment date and time"
+msgstr "Data e horário da consulta"
+
+#: .\users\templates\users\pages\appointment.html:30
+#: .\users\templates\users\pages\appointment.html:34
+#: .\users\templates\users\pages\appointment.html:38
+msgid "at"
+msgstr "às"
+
+#: .\users\templates\users\pages\appointment.html:41
+msgid "Appointment confirmed"
+msgstr "Consulta confirmada"
+
+#: .\users\templates\users\pages\appointment.html:49
+msgid "Appointment completed"
+msgstr "Consulta completa"
+
+#: .\users\templates\users\pages\dashboard.html:11
+#: .\users\templates\users\pages\update.html:3
+#: .\users\templates\users\pages\update.html:7
+msgid "Update Profile"
+msgstr "Atualizar Perfil"
+
+#: .\users\templates\users\pages\dashboard.html:15
+msgid "Your Appointments"
+msgstr "Suas Consultas"
+
+#: .\users\templates\users\pages\dashboard.html:25
+msgid "Confirmed"
+msgstr "Confirmada"
+
+#: .\users\templates\users\pages\dashboard.html:26
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: .\users\templates\users\pages\dashboard.html:59
+msgid "You have no appointments scheduled"
+msgstr "Você não tem nenhuma consulta agendada"
+
+#: .\users\templates\users\pages\dashboard.html:64
+msgid "Treatment History"
+msgstr "Histórico de Tratamento"
+
+#: .\users\views\dashboard.py:57
+msgid "Appointment successfully canceled"
+msgstr "Consulta cancelada com sucesso"
+
+#: .\users\views\login.py:36
+msgid "You are logged in"
+msgstr "Você está logado"
+
+#: .\users\views\login.py:39
+msgid "Invalid credentials"
+msgstr "Credenciais inválidas"
+
+#: .\users\views\login.py:41
+msgid "Invalid username or password"
+msgstr "Usuário ou senha inválidos"
+
+#: .\users\views\logout.py:15
+msgid "Invalid logout request"
+msgstr "Pedido de logout inválido"
+
+#: .\users\views\logout.py:20
+msgid "Invalid logout user"
+msgstr "Usuário de logout inválido"
+
+#: .\users\views\logout.py:23
+msgid "Logged out successfully"
+msgstr "Logout realizado com sucesso"
+
+#: .\users\views\register.py:48
+msgid "User has been created, please log in"
+msgstr "Usuário criado, por favor faça login"
+
+#: .\users\views\update.py:55
+msgid "User information has been updated"
+msgstr "Informações de usuário atualizadas"
+
+#: .\users\views\update.py:86
+msgid "Password has been changed successfully"
+msgstr "Senha alterada com sucesso"
+
+#: .\utils\cpf_cnpj_validator.py:40 .\utils\cpf_cnpj_validator.py:53
+msgid "Please, enter a valid CPF"
+msgstr "Por favor, insira um CPF válido"
+
+#: .\utils\cpf_cnpj_validator.py:62 .\utils\cpf_cnpj_validator.py:70
+msgid "Invalid CPF"
+msgstr "CPF inválido"
+
+#: .\utils\send_email.py:10
+msgid "Your Appointment Confirmation"
+msgstr "Confirmação de Consulta"
+
+#: .\utils\send_email.py:11
+#, python-brace-format
+msgid ""
+"Thank you for scheduling an appointment with OdontoDj!\n"
+"Please check the information below and if everything is correct, click on "
+"the confirmation link.\n"
+"\n"
+"Date: {date}\n"
+"Time: {time}\n"
+"Procedure: {name}\n"
+"Price: R$ {price}\n"
+"\n"
+"{site}\n"
+"\n"
+"Best regards,\n"
+"OdontoDj"
+msgstr ""
+"Obrigado por agendar uma consulta com a OdontoDj!\n"
+"Por favor, verifique as informações abaixo e, caso tudo esteja correto, "
+"clique no link de confirmação.\n"
+"\n"
+"Data: {date}\n"
+"Horário: {time}\n"
+"Procedimento: {name}\n"
+"Preço: R$ {price}\n"
+"\n"
+"{site}\n"
+"\n"
+"Atenciosamente,\n"
+"OdontoDj"
+
+#: .\utils\send_email.py:27
+#, python-brace-format
+msgid ""
+"<div style=\"background-color:#f2ffff;\"><div style=\"background-color:"
+"#f8f8f8;padding:20px;text-align:center;\"><img src=\"{logo}\" alt=\"Logo\" "
+"width=\"8%\"></div><p style=\"color:purple;font-size:22px;text-align:center;"
+"\">Thank you for scheduling an appointment with <strong>OdontoDj</strong>!</"
+"p><div style=\"margin-left:30px;font-size:16px;\"><p>Please check the "
+"information below and if everything is correct, click on the confirmation "
+"link.</p><br><strong>Date</strong>: {date}<br><strong>Time</strong>: {time}"
+"<br><strong>Procedure</strong>: {name}<br><strong>Price</strong>: R$ {price}"
+"<br><br><a style=\"padding:10px 20px;margin-top:5px;border:none;background:"
+"#000;color:#fff;cursor:pointer;text-decoration:none;\" href="
+"\"{site}\">Confirm</a></div><div style=\"margin-left:15px;margin-bottom:30px;"
+"font-size:15px\"><br><br>Best regards,<br><strong style=\"color:purple;font-"
+"size:18px;\">OdontoDj</strong><br><br></div></div>"
+msgstr ""
+"<div style=\"background-color:#f2ffff;\"><div style=\"background-color:"
+"#f8f8f8;padding:20px;text-align:center;\"><img src=\"{logo}\" alt=\"Logo\" "
+"width=\"8%\"></div><p style=\"color:purple;font-size:22px;text-align:center;"
+"\">Obrigado por agendar uma consulta com a <strong>OdontoDj</strong>!</"
+"p><div style=\"margin-left:30px;font-size:16px;\"><p>Por favor, verifique as "
+"informações abaixo e, caso tudo esteja correto, clique no link de "
+"confirmação.</p><br><strong>Data</strong>: {date}<br><strong>Horário</"
+"strong>: {time}<br><strong>Procedimento</strong>: {name}<br><strong>Preço</"
+"strong>: R$ {price}<br><br><a style=\"padding:10px 20px;margin-top:5px;"
+"border:none;background:#000;color:#fff;cursor:pointer;text-decoration:none;"
+"\" href=\"{site}\">Confirmar</a></div><div style=\"margin-left:15px;margin-"
+"bottom:30px;font-size:15px\"><br><br>Atenciosamente,<br><strong style="
+"\"color:purple;font-size:18px;\">OdontoDj</strong><br><br></div></div>"

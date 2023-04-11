@@ -2,6 +2,7 @@ import uuid
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 
@@ -19,7 +20,7 @@ class Procedure(models.Model):
         verbose_name_plural = _('Procedures')
 
     def __str__(self) -> str:
-        return f'#{self.id} - {self.name}'
+        return f'{self.name}' if get_language() == 'en' else f'{self.name_pt}'
 
 
 class AppointmentManager(models.Manager):

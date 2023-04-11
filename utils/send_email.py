@@ -19,7 +19,7 @@ def send_confirmation(appointment, site_url):
                      'OdontoDj').format(
         date=appointment.date.strftime('%d-%b-%Y'),
         time=appointment.time,
-        name=appointment.procedure.name,
+        name=str(appointment.procedure),
         price=str(appointment.procedure.price).replace('.', ','),
         site=confirmation_url,
     )
@@ -50,7 +50,7 @@ def send_confirmation(appointment, site_url):
         logo=logo_url,
         date=appointment.date.strftime('%d-%m-%Y'),
         time=appointment.time.strftime('%H:%M'),
-        name=appointment.procedure.name,
+        name=str(appointment.procedure),
         price=str(appointment.procedure.price).replace('.', ','),
         site=confirmation_url,
     )
