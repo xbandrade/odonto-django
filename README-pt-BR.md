@@ -41,7 +41,7 @@ Não se esqueça de preencher o novo arquivo `.env`.
 - Opções para atualizar as informações de usuário e alterar a senha também podem ser encontradas no painel do usuário.
 
 ## 🖱️ REST API
-#### ➡️ A API foi criada usando Django REST Framework com autenticação JWT
+#### ➡️ A API foi criada usando `Django REST Framework` com autenticação `JWT`
 ❕JWT
 - O usuário pode criar um novo token usando a URL `/users/api/token/`
 - O token pode ser atualizado e verificado através das URLs `/users/api/token/refresh/` e `/users/api/token/verify/`, respectivamente.
