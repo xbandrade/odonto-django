@@ -44,7 +44,7 @@ Make sure to fill in the new `.env` file.
 - Options to update the user's information and change the password can also be found in the dashboard.
 
 ## 🖱️ REST API
-### ➡️ The API was built using Django REST Framework, with JWT authentication
+#### ➡️ The API was built using `Django REST Framework`, with `JWT` authentication
 ❕JWT
 - The user can create a new token using the URL `/users/api/token/`
 - The token can be refreshed and verified via the URLs `/users/api/token/refresh/` and `/users/api/token/verify/`, respectively.
@@ -61,4 +61,4 @@ Make sure to fill in the new `.env` file.
 - A scheduled appointment can be canceled by sending a DELETE to the URL `/schedule/api/<int:pk>/`.
 
 ## ✔️ Tests
-❕Functional tests using `Selenium` are located in the `/tests` directory, and Django unit and integration tests are stored within the `/tests` directory of each individual app folder.
+❕Functional tests using `Selenium` are located in the `/tests` directory, and `Django` unit and integration tests are stored within the `/tests` directory of each individual app folder.
