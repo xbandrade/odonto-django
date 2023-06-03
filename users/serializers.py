@@ -14,11 +14,16 @@ class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
+    is_staff = serializers.SerializerMethodField()
 
     class Meta:
         model = get_user_model()
         fields = ['id', 'username', 'first_name', 'last_name',
-                  'email', 'password', 'password2', 'cpf', 'phone_number']
+                  'email', 'password', 'password2', 'cpf',
+                  'phone_number', 'is_staff']
+
+    def get_is_staff(self, user):
+        return user.is_staff
 
     def get_form_data(self, validated_data):
         profile = validated_data.get('profile')

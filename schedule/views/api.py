@@ -6,8 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from schedule.models import Appointment
-from schedule.serializers import AppointmentSerializer
+from schedule.models import Appointment, Procedure
+from schedule.serializers import AppointmentSerializer, ProcedureSerializer
 
 
 class ScheduleAPIViewSet(ModelViewSet):
@@ -53,3 +53,49 @@ class ScheduleAPIViewSet(ModelViewSet):
             )
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class ProcedureAPIViewSet(ModelViewSet):
+    serializer_class = ProcedureSerializer
+    permission_classes = [IsAuthenticated, ]
+    http_method_names = ['get', 'post', 'patch', 'delete']
+
+    def get_queryset(self):
+        qs = Procedure.objects.order_by('-id')
+        return qs
+
+    def get_object(self):
+        pk = self.kwargs.get('pk', '')
+        obj = get_object_or_404(
+            self.get_queryset(),
+            pk=pk,
+        )
+        return obj
+
+    def create(self, request, *args, **kwargs):
+        serializer = ProcedureSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        logged_user = request.user
+        if not logged_user.is_staff:
+            raise PermissionDenied(
+                'You need to be a staff member to create a new procedure'
+            )
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def partial_update(self, request, *args, **kwargs):
+        obj = self.get_object()
+        logged_user = request.user
+        if not logged_user.is_staff:
+            raise PermissionDenied(
+                'You need to be a staff member to update a procedure'
+            )
+        serializer = ProcedureSerializer(
+            instance=obj,
+            data=request.data,
+            context={'request': request},
+            partial=True,
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)

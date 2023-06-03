@@ -9,6 +9,8 @@ from django.utils.translation import gettext_lazy as _
 class Procedure(models.Model):
     name = models.CharField(max_length=100, verbose_name=_('Name'))
     name_pt = models.CharField(max_length=100, verbose_name=_('PT Name'))
+    description = models.TextField(verbose_name=_('Description'))
+    description_pt = models.TextField(verbose_name=_('PT Description'))
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -37,19 +39,16 @@ class Appointment(models.Model):
         null=True,
         verbose_name=_('User'),
     )
-    procedure = models.ForeignKey(Procedure, on_delete=models.CASCADE)
+    procedure = models.ForeignKey(
+        Procedure, on_delete=models.SET_NULL, null=True)
     scheduled_at = models.DateTimeField(
-        auto_now_add=True, verbose_name=_('Scheduled at')
-    )
+        auto_now_add=True, verbose_name=_('Scheduled at'))
     updated_at = models.DateTimeField(
-        auto_now=True, verbose_name=_('Updated at')
-    )
+        auto_now=True, verbose_name=_('Updated at'))
     is_completed = models.BooleanField(
-        default=False, verbose_name=_('Is completed')
-    )
+        default=False, verbose_name=_('Is completed'))
     is_confirmed = models.BooleanField(
-        default=False, verbose_name=_('Is confirmed')
-    )
+        default=False, verbose_name=_('Is confirmed'))
     date = models.DateField(verbose_name=_('Date'))
     time = models.TimeField(verbose_name=_('Time'))
     confirmation_token = models.UUIDField(

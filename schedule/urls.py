@@ -10,6 +10,12 @@ schedule_api_router.register(
     views.ScheduleAPIViewSet,
     basename='schedule-api',
 )
+procedure_api_router = SimpleRouter()
+procedure_api_router.register(
+    r'api/procedure',
+    views.ProcedureAPIViewSet,
+    basename='procedure-api',
+)
 
 urlpatterns = [
     path('', views.ScheduleView.as_view(), name='schedule'),
@@ -30,4 +36,5 @@ urlpatterns = [
          name='custom'),
 ]
 
+urlpatterns += procedure_api_router.urls
 urlpatterns += schedule_api_router.urls

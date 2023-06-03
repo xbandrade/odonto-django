@@ -3,12 +3,14 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from schedule.forms.appointment_form import AppointmentForm
+from schedule.forms.procedure_form import ProcedureForm
 from schedule.models import Appointment, Procedure
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
     user_full_name = serializers.SerializerMethodField()
     confirmation_link = serializers.SerializerMethodField()
+    price = serializers.SerializerMethodField()
     procedure = serializers.CharField()
 
     class Meta:
@@ -16,9 +18,12 @@ class AppointmentSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'user', 'user_full_name', 'procedure', 'scheduled_at',
             'updated_at', 'is_completed', 'is_confirmed', 'date', 'time',
-            'confirmation_token', 'confirmation_link',
+            'confirmation_token', 'confirmation_link', 'price'
         ]
-        read_only_fields = ['confirmation_link']
+        read_only_fields = ['confirmation_link', 'price']
+
+    def get_price(self, obj):
+        return obj.procedure.price
 
     def get_confirmation_link(self, obj):
         site_url = self.context.get(
@@ -74,6 +79,36 @@ class AppointmentSerializer(serializers.ModelSerializer):
             return appointment
         else:
             raise serializers.ValidationError(appointment_form.errors)
+
+    def validate(self, data):
+        super_validate = super().validate(data)
+        return super_validate
+
+
+class ProcedureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Procedure
+        fields = [
+            'id', 'name', 'name_pt', 'price', 'description', 'description_pt'
+        ]
+
+    def get_form_data(self, validated_data):
+        return {
+            'name': validated_data.get('name'),
+            'name_pt': validated_data.get('name_pt'),
+            'price': validated_data.get('price'),
+            'description': validated_data.get('description'),
+            'description_pt': validated_data.get('description_pt'),
+        }
+
+    def create(self, validated_data):
+        form_data = self.get_form_data(validated_data)
+        procedure_form = ProcedureForm(form_data)
+        if procedure_form.is_valid():
+            procedure = procedure_form.save()
+            return procedure
+        else:
+            raise serializers.ValidationError(procedure_form.errors)
 
     def validate(self, data):
         super_validate = super().validate(data)
