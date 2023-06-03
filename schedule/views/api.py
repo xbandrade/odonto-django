@@ -1,10 +1,12 @@
+from datetime import datetime, time, timedelta
+
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ViewSet
 
 from schedule.models import Appointment, Procedure
 from schedule.serializers import AppointmentSerializer, ProcedureSerializer
@@ -99,3 +101,63 @@ class ProcedureAPIViewSet(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+
+class ExistingAppointmentsAPIViewSet(ViewSet):
+    permission_classes = [IsAdminUser, ]
+
+    def list(self, request):
+        current_datetime = datetime.now()
+        next_available_date = current_datetime.date() + timedelta(days=1)
+        existing_appointments = Appointment.objects.filter(
+            date__range=[next_available_date,
+                         next_available_date + timedelta(days=14)]
+        ).values('date', 'time')
+        response_data = {
+            'next_appointments': existing_appointments
+        }
+        return Response(response_data)
+
+
+class AvailableDateTimeAPIViewSet(ViewSet):
+    def list(self, request):
+        current_datetime = datetime.now()
+        next_available_date = current_datetime.date() + timedelta(days=1)
+        existing_appointments = Appointment.objects.filter(
+            date__range=[next_available_date,
+                         next_available_date + timedelta(days=14)]
+        ).values('date', 'time')
+
+        existing_dates = set(appt['date'] for appt in existing_appointments)
+        existing_times = set(appt['time'] for appt in existing_appointments)
+
+        available_datetime_strings = []
+
+        for _ in range(15):
+            while next_available_date.weekday() == 6:  # Sunday
+                next_available_date += timedelta(days=1)
+
+            start_time = datetime.combine(
+                next_available_date, time(hour=8)
+            )
+            end_time = datetime.combine(
+                next_available_date, time(hour=17)
+            )
+            current_time = start_time
+
+            while current_time <= end_time:
+                if (
+                    current_time.date() not in existing_dates
+                    or current_time.time() not in existing_times
+                ):
+                    available_datetime_strings.append(
+                        current_time.strftime('%Y-%m-%d %H:%M')
+                    )
+                current_time += timedelta(hours=1)
+
+            next_available_date += timedelta(days=1)
+
+        response_data = {
+            'available_datetimes': available_datetime_strings
+        }
+        return Response(response_data)

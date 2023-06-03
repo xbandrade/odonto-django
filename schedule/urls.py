@@ -16,6 +16,19 @@ procedure_api_router.register(
     views.ProcedureAPIViewSet,
     basename='procedure-api',
 )
+datetime_router = SimpleRouter()
+datetime_router.register(
+    r'api/datetime',
+    views.AvailableDateTimeAPIViewSet,
+    basename='datetime-api'
+)
+next_appointments = SimpleRouter()
+next_appointments.register(
+    r'api/appointments',
+    views.ExistingAppointmentsAPIViewSet,
+    basename='appointments-api'
+)
+
 
 urlpatterns = [
     path('', views.ScheduleView.as_view(), name='schedule'),
@@ -36,5 +49,7 @@ urlpatterns = [
          name='custom'),
 ]
 
+urlpatterns += datetime_router.urls
+urlpatterns += next_appointments.urls
 urlpatterns += procedure_api_router.urls
 urlpatterns += schedule_api_router.urls
