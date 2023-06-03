@@ -45,20 +45,49 @@ Make sure to fill in the new `.env` file.
 
 ## 🖱️ REST API
 #### ➡️ The API was built using `Django REST Framework`, with `JWT` authentication
-❕JWT
-- The user can create a new token using the URL `/users/api/token/`
-- The token can be refreshed and verified via the URLs `/users/api/token/refresh/` and `/users/api/token/verify/`, respectively.
+The `base_url` is `https://odontodj.onrender.com`, and all requests to the API can be called via `base_url` + `API endpoint URL` with the `JWT` authorization headers.
 
-❕Users API
-- This API lets you retrieve the logged user's data using the URL `/users/api/<int:pk>/` or `/users/api/me/`.
-- The user's data can also be updated by sending a PATCH to the URL `/users/api/<int:pk>/`.
-- A new user can be created by sending a POST to the URL `/users/api/`.
+❕JWT
+- `POST` ➔ `/users/api/token/` ─ Generate `refresh` and `access` authorization tokens.
+  - `request`: username, password
+- `POST` ➔ `/users/api/token/refresh/` ─ Refresh the access token.
+  - `request`: refresh
+- `POST` ➔ `/users/api/token/verify/` ─ Verify the access token.
+  - `request`: token
+
+❕Users
+- `GET` ➔ `/users/api/me/` ─ Retrieve the logged user's information.
+- `GET` ➔ `/users/api/<pk>/` ─ [**Staff Only**] Retrieve information about user with id `pk`.
+- `GET` ➔ `/users/api/` ─ [**Staff Only**] Retrieve a list of all registered users.
+- `PATCH` ➔ `/users/api/<pk>/` ─ [**Staff Only**] Update information of user with id `pk`.
+  - `request`: first_name, last_name, password, email, phone_number
+- `POST` ➔ `/users/api/` ─ Create a new user.
+  - `request`: username, password, first_name, last_name, email, phone_number, cpf
   
-❕Schedule API
-- This API allows you to retrieve the logged user's appointments and treatment history using the URL `/schedule/api/`.
-- Details about a specific appointment can be retrieved using the URL `/schedule/api/<int:pk>/`.
-- A new appointment can be scheduled by sending a POST to the URL `/schedule/api/`.
-- A scheduled appointment can be canceled by sending a DELETE to the URL `/schedule/api/<int:pk>/`.
+❕Schedule and Appointments
+- `GET` ➔ `/schedule/api/` ─ Retrieve the logged user's appointments.
+- `GET` ➔ `/schedule/api/` ─ [**Staff Only**] Retrieve a list of all upcoming appointments.
+- `GET` ➔ `/schedule/api/<pk>/` ─ Retrieve information about the appointment with id `pk`, cannot access another user's appointment.
+- `GET` ➔ `/schedule/api/<pk>/` ─ [**Staff Only**] Retrieve information about the appointment with id `pk`.
+- `GET` ➔ `/schedule/api/users_appointments/<pk>/` ─ [**Staff Only**] Retrieve a list of all appointments of user with id `pk`.
+- `GET` ➔ `/schedule/api/datetime/` ─ [**Staff Only**] Retrieve a list of all available dates and times.
+- `GET` ➔ `/schedule/api/appointments/` ─ [**Staff Only**] Retrieve a list of all upcoming appointments dates and times.
+- `POST` ➔ `/schedule/api/` ─ Schedule a new appointment for the logged user.
+  - `request`: procedure, date, time
+- `POST` ➔ `/schedule/api/` ─ [**Staff Only**] Schedule a new appointment for a specific user.
+  - `request`: user, procedure, date, time
+- `DELETE` ➔ `/schedule/api/<pk>/` ─ Cancel the scheduled appointment with id `pk` for the logged user.
+- `DELETE` ➔ `/schedule/api/<pk>/` ─ [**Staff Only**] Cancel the scheduled appointment with id `pk`.
+
+
+❕Procedures
+- `GET` ➔ `/schedule/api/procedure/` ─ Retrieve a list of all available procedures.
+- `POST` ➔ `/schedule/api/procedure/` ─ [**Staff Only**] Create a new procedure.
+  - `request`: name, name_pt, description, description_pt, price
+- `PATCH` ➔ `/schedule/api/procedure/<pk>` ─ [**Staff Only**] Update the information of the procedure with id `pk`.
+  - `request`: name, name_pt, description, description_pt, price
+- `DELETE` ➔ `/schedule/api/procedure/<pk>` ─ [**Staff Only**] Delete the procedure with id `pk`.
+
 
 ## ✔️ Tests
 ❕Functional tests using `Selenium` are located in the `/tests` directory, and `Django` unit and integration tests are stored within the `/tests` directory of each individual app folder.
