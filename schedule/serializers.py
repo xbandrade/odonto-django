@@ -26,11 +26,11 @@ class AppointmentSerializer(serializers.ModelSerializer):
         return obj.procedure.price
 
     def get_confirmation_link(self, obj):
-        site_url = self.context.get(
-            'domain') or self.initial_data.get('domain')
-        if not site_url:
+        request = self.context.get('request')
+        if request is None:
             return None
-        return f'http://{site_url}/schedule/confirm/{obj.confirmation_token}/'
+        site_url = request.build_absolute_uri('/')[:-1]
+        return f'{site_url}/schedule/confirm/{obj.confirmation_token}/'
 
     def get_user_full_name(self, obj):
         if obj.user:

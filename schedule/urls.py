@@ -22,8 +22,8 @@ datetime_router.register(
     views.AvailableDateTimeAPIViewSet,
     basename='datetime-api'
 )
-next_appointments = SimpleRouter()
-next_appointments.register(
+upcoming_appointments = SimpleRouter()
+upcoming_appointments.register(
     r'api/appointments',
     views.ExistingAppointmentsAPIViewSet,
     basename='appointments-api'
@@ -47,9 +47,12 @@ urlpatterns = [
     path('custom/',
          views.CustomScheduleView.as_view(),
          name='custom'),
+    path('api/user_appointments/<int:pk>/',
+         views.UserAppointmentAPIViewSet.as_view({'get': 'list'}),
+         name='user-appointments'),
 ]
 
 urlpatterns += datetime_router.urls
-urlpatterns += next_appointments.urls
+urlpatterns += upcoming_appointments.urls
 urlpatterns += procedure_api_router.urls
 urlpatterns += schedule_api_router.urls

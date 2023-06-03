@@ -24,6 +24,7 @@ class AppointmentForm(forms.ModelForm):
             (p.pk, p) for p in Procedure.objects.all()
         ]
         today = dt.date.today()
+        initial_times = []
         date_choices = [
             (today + dt.timedelta(days=i)).isoformat() for i in range(1, 61)
         ]
@@ -36,6 +37,8 @@ class AppointmentForm(forms.ModelForm):
         self.fields['procedure'].label = _('Procedure')
         self.fields['price'].initial = f'R$ {price_str}'
         for d, date_choice in enumerate(date_choices):
+            if dt.date.fromisoformat(date_choice).weekday() == 6:
+                continue
             unavailable_times = Appointment.objects.filter(
                 date=date_choice).values_list('time', flat=True)
             unavailable_times = {t.strftime('%H:%M')
@@ -45,6 +48,7 @@ class AppointmentForm(forms.ModelForm):
                 if f'{i:02d}:00' not in unavailable_times
             ]
             if time_choices:
+                initial_times = time_choices[:]
                 date_choices = date_choices[d:]
                 break
         else:
@@ -59,7 +63,7 @@ class AppointmentForm(forms.ModelForm):
             if dt.date.fromisoformat(date_choice).weekday() != 6
         ]
         self.fields['date'].widget.choices = date_choices
-        self.fields['time'].widget.choices = time_choices
+        self.fields['time'].widget.choices = initial_times or time_choices
 
     class Meta:
         model = Appointment

@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
@@ -16,8 +17,17 @@ class UserAPIViewSet(ModelViewSet):
 
     def get_queryset(self):
         User = get_user_model()
-        qs = User.objects.filter(username=self.request.user.username)
-        return qs
+        if self.request.user.is_staff:
+            return User.objects.all()
+        return User.objects.filter(username=self.request.user.username)
+
+    def get_object(self):
+        pk = self.kwargs.get('pk', '')
+        obj = get_object_or_404(
+            self.get_queryset(),
+            pk=pk,
+        )
+        return obj
 
     @action(
         methods=['get'],
@@ -41,7 +51,7 @@ class UserAPIViewSet(ModelViewSet):
 
     def partial_update(self, request, *args, **kwargs):
         obj = self.get_object()
-        if obj != request.user:
+        if obj != request.user and not request.user.is_staff:
             raise PermissionDenied(
                 'You do not have permission to update this user.')
         serializer = UserSerializer(

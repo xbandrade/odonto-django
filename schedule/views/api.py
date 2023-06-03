@@ -10,15 +10,21 @@ from rest_framework.viewsets import ModelViewSet, ViewSet
 
 from schedule.models import Appointment, Procedure
 from schedule.serializers import AppointmentSerializer, ProcedureSerializer
+from utils.pagination import AppointmentPagination
 
 
 class ScheduleAPIViewSet(ModelViewSet):
     serializer_class = AppointmentSerializer
+    pagination_class = AppointmentPagination
     permission_classes = [IsAuthenticated, ]
     http_method_names = ['get', 'post', 'delete']
 
     def get_queryset(self):
-        qs = Appointment.objects.filter(user=self.request.user).order_by('-id')
+        if self.request.user.is_staff:
+            qs = Appointment.objects.all().order_by('-id')
+        else:
+            qs = Appointment.objects.filter(
+                user=self.request.user).order_by('-id')
         return qs
 
     def get_object(self):
@@ -27,7 +33,7 @@ class ScheduleAPIViewSet(ModelViewSet):
             self.get_queryset(),
             pk=pk,
         )
-        if obj.user != self.request.user:
+        if obj.user != self.request.user and not self.request.user.is_staff:
             raise PermissionDenied(
                 'You are not allowed to access this appointment.'
             )
@@ -49,12 +55,27 @@ class ScheduleAPIViewSet(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         logged_user = request.user
         appointment_user = serializer.validated_data.get('user')
-        if logged_user.id != appointment_user.id:
+        if logged_user.id != appointment_user.id and not logged_user.is_staff:
             raise PermissionDenied(
                 'You are not allowed to schedule for another user.'
             )
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class UserAppointmentAPIViewSet(ModelViewSet):
+    serializer_class = AppointmentSerializer
+    pagination_class = AppointmentPagination
+    permission_classes = [IsAuthenticated, ]
+    http_method_names = ['get', ]
+
+    def get_queryset(self):
+        if not self.request.user.is_staff:
+            raise PermissionDenied(
+                'You are not allowed to access these appointments.')
+        user_id = self.kwargs.get('pk', 0)
+        qs = Appointment.objects.filter(user__id=user_id).order_by('-id')
+        return qs
 
 
 class ProcedureAPIViewSet(ModelViewSet):
@@ -120,6 +141,8 @@ class ExistingAppointmentsAPIViewSet(ViewSet):
 
 
 class AvailableDateTimeAPIViewSet(ViewSet):
+    permission_classes = [IsAdminUser, ]
+
     def list(self, request):
         current_datetime = datetime.now()
         next_available_date = current_datetime.date() + timedelta(days=1)
@@ -127,16 +150,12 @@ class AvailableDateTimeAPIViewSet(ViewSet):
             date__range=[next_available_date,
                          next_available_date + timedelta(days=14)]
         ).values('date', 'time')
-
         existing_dates = set(appt['date'] for appt in existing_appointments)
         existing_times = set(appt['time'] for appt in existing_appointments)
-
         available_datetime_strings = []
-
         for _ in range(15):
-            while next_available_date.weekday() == 6:  # Sunday
+            while next_available_date.weekday() == 6:  # sunday
                 next_available_date += timedelta(days=1)
-
             start_time = datetime.combine(
                 next_available_date, time(hour=8)
             )
@@ -144,7 +163,6 @@ class AvailableDateTimeAPIViewSet(ViewSet):
                 next_available_date, time(hour=17)
             )
             current_time = start_time
-
             while current_time <= end_time:
                 if (
                     current_time.date() not in existing_dates
@@ -154,9 +172,7 @@ class AvailableDateTimeAPIViewSet(ViewSet):
                         current_time.strftime('%Y-%m-%d %H:%M')
                     )
                 current_time += timedelta(hours=1)
-
             next_available_date += timedelta(days=1)
-
         response_data = {
             'available_datetimes': available_datetime_strings
         }

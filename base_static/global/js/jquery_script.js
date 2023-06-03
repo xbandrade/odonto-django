@@ -31,4 +31,8 @@ $(document).ready(function() {
             dateField.val(selectedDate);
         });
     });
+    setTimeout(function() {
+        dateField.val("03-08-2023").trigger('change');
+        console.log("Here");
+    }, 0);
 });
