@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/xbandrade/odonto-django/main/base_static/global/img/favicon.ico" width="4%">  Odonto Django
+# <img src="https://raw.githubusercontent.com/xbandrade/odonto-django/main/base_static/global/img/favicon.ico" width="4%">  OdontoDj
 
 🌐  Deploy: https://odontodj.onrender.com
 
@@ -42,6 +42,13 @@ Não se esqueça de preencher o novo arquivo `.env`.
 
 ## 🖱️ REST API
 #### ➡️ A API foi criada usando `Django REST Framework` com autenticação `JWT`
+A `base_url` é `https://odontodj.onrender.com`, e todos os requests para a API podem ser chamados via `base_url` + `API endpoint URL` com os headers de autorização `JWT`.
+
+#### ➡️ Endpoints da documentação Swagger
+- JSON das especificações da API em `/swagger.json`
+- Swagger-UI das especificações da API em `/swagger/`
+- ReDoc das especificações da API em `/redoc/`
+
 ❕JWT
 - O usuário pode criar um novo token usando a URL `/users/api/token/`
 - O token pode ser atualizado e verificado através das URLs `/users/api/token/refresh/` e `/users/api/token/verify/`, respectivamente.
