@@ -10,13 +10,9 @@
 ## ⚙️ Setup 
 To run the project in a local environment, follow these steps:
 
-```python -m venv venv```
+```python -m venv venv; pip install -r requirements.txt; cp .env-example .env; python .\manage.py makemigrations; python .\manage.py migrate```
 
-```pip install -r requirements.txt```
-
-```cp .env-example .env```
-
-```python -m main```
+```python .\manage.py runserver```
 
 Make sure to fill in the new `.env` file.
 
